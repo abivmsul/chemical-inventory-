@@ -1,0 +1,516 @@
+
+  {%load static%}
+
+  {% if request.user.groups.all.0.name == 'Researcher' %}
+     <!-- Sidebar Researcher -->
+ <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'researcherhome' %}">
+        <div class="sidebar-brand-icon rotate-n-15">
+            
+        </div>
+        <div class="sidebar-brand-text mx-3"> Researcher</div>
+    </a>
+ 
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+ 
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'researcherhome' %}">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span></a>
+    </li>
+ 
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+ 
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Chemical
+    </div>
+    {% if request.user.researcher.department == 'Animal Biotechnology' %}
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'animalchemicalList' %}">
+            <i class="fas fa-fw fa-clipboard-list"></i>
+            <span>Request Chemical</span></a>
+    </li>
+    {% elif request.user.researcher.department == 'Plant Biotechnology' %}
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'plantchemicalList' %}">
+            <i class="fas fa-fw fa-clipboard-list"></i>
+            <span>Request Chemical</span></a>
+    </li>
+    {% elif request.user.researcher.department == 'Microbial Biotechnology' %}
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'microbialchemicalList' %}">
+            <i class="fas fa-fw fa-clipboard-list"></i>
+            <span>Request Chemical</span></a>
+    </li>
+    {%endif%}
+    <li class="nav-item">
+     <a class="nav-link" href="{% url 'myRequest' %}">
+         <i class="fas fa-fw fa-table"></i>
+         <span>My Requests</span></a>
+ </li>
+       <!-- Divider -->
+       <hr class="sidebar-divider">
+ 
+    <!-- Nav Item - Pages Collapse Menu -->
+    <div class="sidebar-heading">
+     other
+ </div>
+ <li class="nav-item">
+     <a class="nav-link" href="">
+         <i class="fas fa-fw fa-table"></i>
+         <span>le lela neger</span></a>
+ </li>
+ 
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+            aria-expanded="true" aria-controls="collapseTwo">
+            <i class="fas fa-fw fa-list"></i>
+            <span>Blank</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Components:</h6>
+                <a class="collapse-item" href="">*****</a>
+                <a class="collapse-item" href="">O****</a>
+            </div>
+        </div>
+    </li>
+ 
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+ 
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+ 
+ </ul>
+ <!-- End of Sidebar -->
+  {% elif request.user.groups.all.0.name == 'Custodian' %}
+      <!-- Sidebar custodian -->
+      <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
+ 
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'custodianhome' %}">
+            <div class="sidebar-brand-icon rotate-n-15">
+                
+            </div>
+            <div class="sidebar-brand-text mx-3"> Custodian</div>
+        </a>
+     
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+     
+     
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+     
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Chemical Requests
+        </div>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse1"
+                aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-list "></i>
+                <span>Chemicals</span>
+            </a>
+            <div id="collapse1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Departments:</h6>
+                    <a class="collapse-item" href="{% url 'animalchemicals' %}">Animal Bio-Technology</a>
+                    <a class="collapse-item" href="{% url 'microbialchemicals' %}">Mocrobial Bio-Technology</a>
+                    <a class="collapse-item" href="{% url 'plantchemicals' %}">Plant Bio-Technology</a>
+                </div>
+            </div>
+        </li>
+        <hr class="sidebar-divider">
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse2"
+                aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-list"></i>
+                <span>Researcher Requests</span>
+            </a>
+            <div id="collapse2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Departments:</h6>
+                    <a class="collapse-item" href="{% url 'animalrequests' %}">Animal Bio-Technology</a>
+                    <a class="collapse-item" href="{% url 'microbialrequests' %}">Mocrobial Bio-Technology</a>
+                    <a class="collapse-item" href="{% url 'plantrequests' %}">Plant Bio-Technology</a>
+                </div>
+            </div>
+        </li>
+        <hr class="sidebar-divider">
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse3"
+                aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-list"></i>
+                <span>Department Requests</span>
+            </a>
+            <div id="collapse3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Departments:</h6>
+                    <a class="collapse-item" href="{% url 'animaldepartmentRequest' %}">Animal Bio-Technology</a>
+                    <a class="collapse-item" href="{% url 'microbialdepartmentRequest' %}">Mocrobial Bio-Technology</a>
+                    <a class="collapse-item" href="{% url 'plantdepartmentRequest' %}">Plant Bio-Technology</a>
+                </div>
+            </div>
+        </li>
+       
+    
+           <!-- Divider -->
+           <hr class="sidebar-divider">
+     
+        <!-- Nav Item - Pages Collapse Menu -->
+        <div class="sidebar-heading">
+         other
+     </div>
+     <li class="nav-item">
+         <a class="nav-link" href="">
+             <i class="fas fa-fw fa-table"></i>
+             <span>le lela neger</span></a>
+     </li>
+     
+     
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
+     
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+     
+     </ul>
+     <!-- End of Sidebar -->
+      
+{% elif request.user.groups.all.0.name == 'Department' %}
+     <!-- Sidebar Department -->
+     <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
+
+       <!-- Sidebar - Brand -->
+       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'departmenthome' %}">
+           <div class="sidebar-brand-icon rotate-n-15">
+               
+           </div>
+           <div class="sidebar-brand-text mx-3"> Department</div>
+       </a>
+    
+       <!-- Divider -->
+       <hr class="sidebar-divider my-0">
+    
+       <!-- Nav Item - Dashboard -->
+       <li class="nav-item">
+           <a class="nav-link" href="{% url 'departmenthome' %}">
+               <i class="fas fa-fw fa-tachometer-alt"></i>
+               <span>Dashboard</span></a>
+       </li>
+       <!-- Divider -->
+       <hr class="sidebar-divider">
+         
+       <!-- Nav Item - Pages Collapse Menu -->
+       <div class="sidebar-heading">
+           Users
+       </div>
+       <!-- <li class="nav-item">
+           <a class="nav-link" href="{% url 'myRequest' %}">
+               <i class="fas fa-fw fa-table"></i>
+               <span>My Requests</span></a>
+       </li> -->
+       <li class="nav-item">
+           <a class="nav-link" href="#" data-toggle="modal" data-target="#res">
+               <i class="fas fa-user"></i>
+               <span>Add Researcher</span></a>
+       </li>
+ 
+       
+       <!-- Divider -->
+       <hr class="sidebar-divider">
+    
+       <!-- Heading -->
+       <div class="sidebar-heading">
+           Chemical
+       </div>
+    
+      
+       {% if request.user.department.department == 'Animal Biotechnology' %}
+       <li class="nav-item">
+        <a class="nav-link" href="{% url 'animalchemicals' %}">
+            <i class="fas fa-fw fa-clipboard-list"></i>
+            <span>List Of Chemicals</span></a>
+     </li>
+       {% elif request.user.department.department == 'Plant Biotechnology' %}
+       <li class="nav-item">
+           <a class="nav-link" href="{% url 'plantchemicals' %}">
+               <i class="fas fa-fw fa-clipboard-list"></i>
+               <span>List Of Chemicals</span></a>
+       </li>
+       {% elif request.user.department.department == 'Microbial Biotechnology' %}
+       <li class="nav-item">
+           <a class="nav-link" href="{% url 'microbialchemicals' %}">
+               <i class="fas fa-fw fa-clipboard-list"></i>
+               <span>List Of Chemicals</span></a>
+       </li>
+       {%endif%}
+
+
+       {% if request.user.department.department == 'Animal Biotechnology' %}
+       <li class="nav-item">
+        <a class="nav-link" href="{% url 'animalrequestsofdpartment' %}">
+            <i class="fas fa-fw fa-clipboard-list"></i>
+            <span>Chemical Requests</span></a>
+          </li>
+        {% elif request.user.department.department == 'Plant Biotechnology' %}
+         <li class="nav-item">
+        <a class="nav-link" href="{% url 'plantrequestsofdpartment' %}">
+            <i class="fas fa-fw fa-clipboard-list"></i>
+            <span>Chemical Requests</span></a>
+         </li>
+         {% elif request.user.department.department == 'Microbial Biotechnology' %}
+         <li class="nav-item">
+            <a class="nav-link" href="{% url 'microbialrequestsofdpartment' %}">
+                <i class="fas fa-fw fa-clipboard-list"></i>
+                <span>Researcher Requests</span></a>
+             </li>
+        {%endif%}
+
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'chemicalList' %}">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Order New Chemicals</span></a>
+        </li>
+        
+        
+          <!-- Divider -->
+          <hr class="sidebar-divider">
+    
+       <!-- Nav Item - Pages Collapse Menu -->
+       <div class="sidebar-heading">
+        other
+    </div>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'myRequest' %}">
+            <i class="fas fa-fw fa-table"></i>
+            <span>My Requests</span></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="">
+            <i class="fas fa-fw fa-table"></i>
+            <span>le lela neger</span></a>
+    </li>
+    
+    
+       <!-- Divider -->
+       <hr class="sidebar-divider d-none d-md-block">
+    
+       <!-- Sidebar Toggler (Sidebar) -->
+       <div class="text-center d-none d-md-inline">
+           <button class="rounded-circle border-0" id="sidebarToggle"></button>
+       </div>
+    
+    </ul>
+    <!-- End of Sidebar -->
+
+     
+     <!-- Add department head user Modal-->
+     <div class="modal fade bd-example-modal-lg" id="res" tabindex="-1" role="dialog" aria-labelledby="detail"
+     aria-hidden="true">
+     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+         <div class="modal-content" style="box-shadow:0 0 25px 0 rgb(12, 194, 51);">
+             <div class="modal-header border-bottom-0">
+                 <h5 class="title" id="detail">Researcher</h5>
+                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">×</span>
+                 </button>
+                </div>
+                <div class="modal-body border-bottom-0">
+                
+                       <div class="col-md-10 mx-auto">
+                                  <div class="card" style="box-shadow:0 0 25px 0 rgb(12, 194, 51);">
+                                    <div class="card-header">
+                                         <h4>Add Researcher User</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <form method="POST" action="{% url 'addUser' %}"  enctype='multipart/form-data'  >
+                                            {% csrf_token %}
+                                            <!-- <div class="input-group mb-3">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                                </div>
+                                                {{form.username}}
+                                            </div> -->
+                                            <div class="form-group mb-4">
+                                                <label>User Name<sup class="text-danger">&#10033;</sup></label>
+                                                <input type="text" name="username" placeholder="Name" class="form-control" required>
+                                              </div>
+                                              <div class="form-group mb-4">
+                                                <label>Email<sup class="text-danger">&#10033;</sup></label>
+                                                <input type="email" name="email" placeholder="example@gmial.com" class="form-control" required>
+                                              </div>
+                                           
+    
+                    
+                                               <div class="d-flex justify-content-center mt-3 login_container">
+                                                <input type="hidden" name="next" value="{{ request.path }}">
+                                                 <input class="btn btn-success" name="res" type="submit" value="Create Account">
+                                               </div>
+                    
+                                        </form>
+                                    </div>
+                                  </div>
+                              </div>            
+                  
+               </div>
+  
+         </div>
+     </div>
+    </div>
+
+
+{% elif request.user.groups.all.0.name == 'Director' %}
+
+      <!-- Sidebar Department -->
+      <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
+
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'directorhome' %}">
+            <div class="sidebar-brand-icon rotate-n-15">
+                
+            </div>
+            <div class="sidebar-brand-text mx-3"> Director</div>
+        </a>
+     
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+     
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'directorhome' %}">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Dashboard</span></a>
+        </li>
+     
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+         
+        <!-- Nav Item - Pages Collapse Menu -->
+        <div class="sidebar-heading">
+            Users
+        </div>
+        <!-- <li class="nav-item">
+            <a class="nav-link" href="{% url 'myRequest' %}">
+                <i class="fas fa-fw fa-table"></i>
+                <span>My Requests</span></a>
+        </li> -->
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'addUser' %}">
+                <i class="fas fa-user"></i>
+                <span>Add Users</span></a>
+        </li>
+        
+        
+        
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Chemical
+        </div>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse1"
+                aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-list "></i>
+                <span>Chemicals</span>
+            </a>
+            <div id="collapse1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Departments:</h6>
+                    <a class="collapse-item" href="{% url 'animalchemicals' %}">Animal Bio-Technology</a>
+                    <a class="collapse-item" href="{% url 'microbialchemicals' %}">Mocrobial Bio-Technology</a>
+                    <a class="collapse-item" href="{% url 'plantchemicals' %}">Plant Bio-Technology</a>
+                </div>
+            </div>
+        </li>
+       
+        {% if request.user.department.department == 'Animal Biotechnology' %}
+        <li class="nav-item">
+         <a class="nav-link" href="{% url 'animalchemicals' %}">
+             <i class="fas fa-fw fa-clipboard-list"></i>
+             <span>List Of Chemicals</span></a>
+      </li>
+        {% elif request.user.department.department == 'Plant Biotechnology' %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'plantchemicals' %}">
+                <i class="fas fa-fw fa-clipboard-list"></i>
+                <span>List Of Chemicals</span></a>
+        </li>
+        {% elif request.user.department.department == 'Microbial Biotechnology' %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'microbialchemicals' %}">
+                <i class="fas fa-fw fa-clipboard-list"></i>
+                <span>List Of Chemicals</span></a>
+        </li>
+        {%endif%}
+ 
+ 
+        {% if request.user.department.department == 'Animal Biotechnology' %}
+        <li class="nav-item">
+         <a class="nav-link" href="{% url 'animalrequestsofdpartment' %}">
+             <i class="fas fa-fw fa-clipboard-list"></i>
+             <span>Chemical Requests</span></a>
+           </li>
+         {% elif request.user.department.department == 'Plant Biotechnology' %}
+          <li class="nav-item">
+         <a class="nav-link" href="{% url 'plantrequestsofdpartment' %}">
+             <i class="fas fa-fw fa-clipboard-list"></i>
+             <span>Chemical Requests</span></a>
+          </li>
+          {% elif request.user.department.department == 'Microbial Biotechnology' %}
+          <li class="nav-item">
+             <a class="nav-link" href="{% url 'microbialrequestsofdpartment' %}">
+                 <i class="fas fa-fw fa-clipboard-list"></i>
+                 <span>Researcher Requests</span></a>
+              </li>
+         {%endif%}
+ 
+         <!-- <li class="nav-item">
+             <a class="nav-link" href="{% url 'chemicalList' %}">
+                 <i class="fas fa-fw fa-table"></i>
+                 <span>Order New Chemicals</span></a>
+         </li>
+          -->
+         
+           <!-- Divider -->
+           <hr class="sidebar-divider">
+     
+        <!-- Nav Item - Pages Collapse Menu -->
+        <div class="sidebar-heading">
+         other
+     </div>
+     <!-- <li class="nav-item">
+         <a class="nav-link" href="{% url 'myRequest' %}">
+             <i class="fas fa-fw fa-table"></i>
+             <span>My Requests</span></a>
+     </li> -->
+     <li class="nav-item">
+         <a class="nav-link" href="">
+             <i class="fas fa-fw fa-table"></i>
+             <span>le lela neger</span></a>
+     </li>
+     
+     
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
+     
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+     
+     </ul>
+     <!-- End of Sidebar -->
+          
+     {%endif%}

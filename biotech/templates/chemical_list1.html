@@ -1,0 +1,206 @@
+{% extends 'main.html'%}
+
+{% block content %}
+
+{% if page == 'animal'%}
+<section class="">
+    <div class="container">
+      <div class="text-center">
+        <h2>List of  <strong class="text-success">Animal Bio Technology</strong> CHEMICALS</h2>
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <p class="lead text-muted mt-2">The following are list of chemicals that you can find in the store </p>
+          </div>
+        </div>
+      </div>
+   
+        <div class="row">
+    
+            {% for chemicals in chemical%}           
+        <div class="col-md-6 col-lg-4 mb-4">
+          <div class="card bg-gradient-success">
+            
+            
+            <div class="card">
+              <div class="listing-heading text-center">
+                <br>
+                <h2 class="text-success">{{chemicals.chemical.name }}</h2>
+                <h5 class="text-gray-600"><b>In {{chemicals.chemical.unit}}</b></h5>
+                
+                
+              </div>
+              <hr>
+              <div class=" text-secondary">
+                <div class=" listing-heading text-center">
+                  <p> <strong> Company: <i class="text-success">{{chemicals.chemical.company}}</i></strong> </p>
+                  
+                
+                </div>
+                 
+                 </div>             
+              <hr>
+              <div class="listing-heading text-center">
+              <a href="{% url 'chemical' chemicals.chemical.id %}" class="btn btn-center btn-success ">Detail</a>
+            </div>
+            <br>
+            </div>
+          </div>
+        </div>
+          {%endfor%}
+        </div>
+      
+    </div>
+  </section>
+  {%elif page == 'plant'%}
+  <section class="">
+    <div class="container">
+      <div class="text-center">
+        <h2>List of  <strong class="text-success">Plant Bio Technology</strong> CHEMICALS</h2>
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <p class="lead text-muted mt-2">The following are list of chemicals that you can find in the store </p>
+          </div>
+        </div>
+      </div>
+   
+        <div class="row">
+    
+            {% for chemicals in chemical%}           
+        <div class="col-md-6 col-lg-4 mb-4">
+          <div class="card bg-gradient-success">
+            
+            
+            <div class="card">
+              <div class="listing-heading text-center">
+                <br>
+                <h2 class="text-success">{{chemicals.chemical.name }}</h2>
+                <h5 class="text-gray-600"><b>In {{chemicals.chemical.unit}}</b></h5>
+                
+                
+              </div>
+              <hr>
+              <div class=" text-secondary">
+                <div class=" listing-heading text-center">
+                  <p> <strong> Company: <i class="text-success">{{chemicals.chemical.company}}</i></strong> </p>
+                  
+                
+                </div>
+                 
+                 </div>             
+              <hr>
+              <div class="listing-heading text-center">
+              <a href="{% url 'chemical' chemicals.chemical.id %}" class="btn btn-center btn-success ">Detail</a>
+            </div>
+            <br>
+            </div>
+          </div>
+        </div>
+        {% empty %}
+        <h2> No chemicals</h2>
+          {%endfor%}
+        </div>
+      
+    </div>
+  </section>
+  {%elif page == 'microbial'%}
+  <section class="">
+    <div class="container">
+      <div class="text-center">
+        <h2>List of  <strong class="text-success">Microbial Bio Technology</strong> CHEMICALS</h2>
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <p class="lead text-muted mt-2">The following are list of chemicals that you can find in the store </p>
+          </div>
+        </div>
+      </div>
+   
+        <div class="row">
+    
+            {% for chemicals in chemical%}           
+        <div class="col-md-6 col-lg-4 mb-4">
+          <div class="card bg-gradient-success">
+            
+            
+            <div class="card">
+              <div class="listing-heading text-center">
+                <br>
+                <h2 class="text-success">{{chemicals.chemical.name }}</h2>
+                <h5 class="text-gray-600"><b>In {{chemicals.chemical.unit}}</b></h5>
+                
+                
+              </div>
+              <hr>
+              <div class=" text-secondary">
+                <div class=" listing-heading text-center">
+                  <p> <strong> Company: <i class="text-success">{{chemicals.chemical.company}}</i></strong> </p>
+                  
+                
+                </div>
+                 
+                 </div>             
+              <hr>
+              <div class="listing-heading text-center">
+              <a href="{% url 'chemical' chemicals.chemical.id %}" class="btn btn-center btn-success ">Detail</a>
+            </div>
+            <br>
+            </div>
+          </div>
+        </div>
+        {% empty %}
+        <h2> No chemicals</h2>
+          {%endfor%}
+        </div>
+      
+    </div>
+  </section>
+  {%else%}
+  <section class="">
+    <div class="container">
+      <div class="text-center">
+        <h2>List of  <strong class="text-success">CHEMICALS</strong> </h2>
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <p class="lead text-muted mt-2">The following are list of chemicals that you can find in the store </p>
+          </div>
+        </div>
+      </div>
+   
+        <div class="row">
+    
+            {% for chemicals in chemical%}           
+        <div class="col-md-6 col-lg-4 mb-4">
+          <div class="card bg-gradient-success">
+            
+            
+            <div class="card">
+              <div class="listing-heading text-center">
+                <br>
+                <h2 class="text-success">{{chemicals.name }}</h2>
+                <h5 class="text-gray-600"><b>In {{chemicals.unit}}</b></h5>
+                
+                
+              </div>
+              <hr>
+              <div class=" text-secondary">
+                <div class=" listing-heading text-center">
+                  <p> <strong> Company: <i class="text-success">{{chemicals.company}}</i></strong> </p>
+                  
+                
+                </div>
+                 
+                 </div>             
+              <hr>
+              <div class="listing-heading text-center">
+              <a href="{% url 'chemical' chemicals.id %}" class="btn btn-center btn-success ">Detail</a>
+            </div>
+            <br>
+            </div>
+          </div>
+        </div>
+          {%endfor%}
+        </div>
+      
+    </div>
+  </section>
+  {% endif %}
+{% endblock%}

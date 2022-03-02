@@ -1,0 +1,99 @@
+{% extends 'main.html'%}
+
+{% block content %}
+
+
+<section class="hero">
+  
+    <div class="text-center">
+        <h2>List of <strong class="text-success">CHEMICALS</strong> </h2>
+        
+      </div>
+    <div class="container-fluid">
+    
+      
+    
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-success">Your List</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead align="center">
+                <tr>
+                    <th>NO </th>
+                    <th>Chemical Name</th>
+                    <th>Company </th>
+                    <th>Quantity </th>
+                    <th>Unit </th>
+                    <th>Action </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for requestedchemical in object.chemicals.all %}
+              
+                <tr align="center">
+                    <td>{{forloop.counter }}</td>
+                    <td>{{requestedchemical.chemical.name}}</td>
+                    <td>{{requestedchemical.chemical.company}}</td>
+                  
+                    <td>
+                        <a href="{% url 'removeSingleChemicalFromList' requestedchemical.chemical.id %}"> &nbsp;<i class="fas fa-minus fa-1x text-danger"></i>  &nbsp;</a>
+                        
+                        {{requestedchemical.quantity}}
+                        <a href="{% url 'addToList' requestedchemical.chemical.id  %}"> &nbsp;  <i class="fas fa-plus fa-1x text-success"></i> </i></a>
+                    </td>
+                    <td>{{requestedchemical.chemical.unit}}</td>
+                    <td>  <a  href="{% url 'removeFromList' requestedchemical.chemical.id %}">
+                        <i class="fas fa-fw fa-trash-alt text-danger"></i>
+                    </a></td>
+                  
+                   
+                    </tr>
+                    {%empty%}    
+         
+              
+                <tr>
+                    <td colspan="6">Your List is empty
+                        {% if request.user.researcher.department == 'Animal Biotechnology' %}
+                    <a class='btn btn-success float-right' href="{% url 'animalchemicalList' %}">Select and add Chemicals</a>
+                    {% elif request.user.researcher.department == 'Plant Biotechnology' %}
+                    <a class='btn btn-success float-right' href="{% url 'plantchemicalList' %}">Select and add Chemicals</a>
+                    {% elif request.user.researcher.department == 'Microbial Biotechnology' %}
+                    <a class='btn btn-success float-right' href="{% url 'microbialchemicalList' %}">Select and add Chemicals</a>
+                    {%else%}
+                    <a class='btn btn-success float-right' href="{% url 'chemicalList' %}">Select and add Chemicals</a>
+                    {%endif%}
+                    </td>
+                </tr>
+                {% endfor %}
+    
+          
+             
+            
+              
+            </tbody>
+          </table>
+        </div>
+        {% if object.chemicals.all %}
+      
+        <a class='btn btn-success float-right ml-2' href="{% url 'requestConfirm' %}">-Proceed to Request-</a>
+
+        {% if request.user.researcher.department == 'Animal Biotechnology' %}
+        <a class='btn btn-info float-right' href="{% url 'animalchemicalList' %}">Add More</a>
+        {% elif request.user.researcher.department == 'Plant Biotechnology' %}
+        <a class='btn btn-info float-right' href="{% url 'plantchemicalList' %}">Add More</a>
+        {% elif request.user.researcher.department == 'Microbial Biotechnology' %}
+        <a class='btn btn-info float-right' href="{% url 'microbialchemicalList' %}">Add More</a>
+        {%else%}
+        <a class='btn btn-info float-right' href="{% url 'chemicalList' %}"> Add More</a>
+        {%endif%}
+        {%endif%}
+        </div>
+        </div>
+        </div>
+        </section>
+    
+
+{% endblock%}

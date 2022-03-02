@@ -1,0 +1,212 @@
+{% extends 'main.html'%}
+
+{% block content %}
+
+
+{% if page == 'animal' %}
+<div class="container-fluid">
+    <div class="text-center">
+        <h2> <strong class="text-success"> Animal Bio-Technology</strong> Chemicals</h2>
+        
+      </div>
+  <!-- Page Heading -->
+
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-success">Chemical Lists</h6>
+    </div>
+    <div class="card-body" style="box-shadow:0 0 25px 0 rgb(92, 226, 121);">
+        <div class="table-responsive">
+            <table class="table table-bordered text-gray-800" id="dataTable" width="100%" cellspacing="0" >
+                <thead>
+                 <tr>
+                <th>NO</th>
+                <th>Chemical Name</th>
+                <th>Company</th>
+                <th>Quantity</th>
+                <th>Unit</th>
+                <th>Shelf</th>
+                <th>Cabinate</th>
+                <th>Expire DAte </th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>NO</th>
+                <th>Chemical Name</th>
+                <th>Company</th>
+                <th>Quantity</th>
+                <th>Unit</th>
+                <th>Shelf</th>
+                <th>Cabinate</th>
+                <th>Expire DAte</th>
+            </tr>
+        </tfoot>
+        <tbody>
+         {% for chemicals in obj %}
+          
+            <tr align="center">
+                <td>{{forloop.counter }}</td>
+                <td>{{chemicals.chemical.name}}</td>
+                <td>{{chemicals.chemical.company}}</td>
+                 <td>{{chemicals.available}}</td>
+                  <td>{{chemicals.chemical.unit}}</td>
+                  <td>{{chemicals.shelf}}</td>
+                  <td>{{chemicals.cabinate}}</td> 
+                  <td>{{chemicals.expireDate}}</td>
+                </tr>
+                {%empty%}    
+                <tr>
+                    <td colspan='5'>There are no chemicals</td>
+                </tr>   
+               
+            
+            {%endfor%}
+        
+          
+        </tbody>
+      </table>
+    </div>
+    </div>
+    </div>
+    </div>
+ {%elif page == 'plant'%}
+ <div class="container-fluid">
+    <div class="text-center">
+        <h2><strong class="text-success"> Plant Bio-Technology</strong>Chemicals </h2>
+        
+      </div>
+  <!-- Page Heading -->
+
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-success">chemicals</h6>
+    </div>
+    <div class="card-body" style="box-shadow:0 0 25px 0 rgb(92, 226, 121);">
+        <div class="table-responsive">
+            <table class="table table-bordered text-gray-800" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                 <tr>
+                <th>NO</th>
+                <th>Chemical Name</th>
+                <th>Company</th>
+                <th>Quantity</th>
+                <th>Unit</th>
+                <th>Shelf</th>
+                <th>Cabinate</th>
+                <th>Expire DAte </th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>NO</th>
+                <th>Chemical Name</th>
+                <th>Company</th>
+                <th>Quantity</th>
+                <th>Unit</th>
+                <th>Shelf</th>
+                <th>Cabinate</th>
+                <th>Expire DAte</th>
+            </tr>
+        </tfoot>
+        <tbody>
+         {% for chemicals in obj%}
+          
+            <tr align="center">
+                <td>{{forloop.counter }}</td>
+                <td>{{chemicals.chemical.name}}</td>
+                <td>{{chemicals.chemical.company}}</td>
+                 <td>{{chemicals.available}}</td>
+                  <td>{{chemicals.chemical.unit}}</td>
+                  <td>{{chemicals.shelf}}</td>
+                  <td>{{chemicals.cabinate}}</td> 
+                  <td>{{chemicals.expireDate}}</td>
+                </tr>
+                {%empty%}    
+                <tr>
+                    <td colspan='5'>There are no chemicals</td>
+                </tr>   
+               
+            
+            {%endfor%}
+        
+          
+        </tbody>
+      </table>
+    </div>
+    </div>
+    </div>
+    </div>
+{%elif page == 'microbial'%}
+<div class="container-fluid">
+    <div class="text-center">
+        <h2><strong class="text-success"> Microbial Bio-Technology</strong> Chemicals </h2>
+        
+      </div>
+  <!-- Page Heading -->
+
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-success">chemicals</h6>
+    </div>
+    <div class="card-body" style="box-shadow:0 0 25px 0 rgb(92, 226, 121);">
+        <div class="table-responsive">
+            <table class="table table-bordered text-gray-800" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                 <tr>
+                <th>NO</th>
+                <th>Chemical Name</th>
+                <th>Company</th>
+                <th>Quantity</th>
+                <th>Unit</th>
+                <th>Shelf</th>
+                <th>Cabinate</th>
+                <th>Expire DAte </th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>NO</th>
+                <th>Chemical Name</th>
+                <th>Company</th>
+                <th>Quantity</th>
+                <th>Unit</th>
+                <th>Shelf</th>
+                <th>Cabinate</th>
+                <th>Expire DAte</th>
+            </tr>
+        </tfoot>
+        <tbody>
+         {% for chemicals in obj%}
+          
+            <tr align="center">
+                <td>{{forloop.counter }}</td>
+                <td>{{chemicals.chemical.name}}</td>
+                <td>{{chemicals.chemical.company}}</td>
+                 <td>{{chemicals.available}}</td>
+                  <td>{{chemicals.chemical.unit}}</td>
+                  <td>{{chemicals.shelf}}</td>
+                  <td>{{chemicals.cabinate}}</td> 
+                  <td>{{chemicals.expireDate}}</td>
+                </tr>
+                {%empty%}    
+                <tr>
+                    <td colspan='5'>There are no chemicals</td>
+                </tr>   
+               
+            
+            {%endfor%}
+        
+          
+        </tbody>
+      </table>
+    </div>
+    </div>
+    </div>
+    </div>
+{%endif%}
+
+{% endblock%}

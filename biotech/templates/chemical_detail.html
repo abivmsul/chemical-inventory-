@@ -1,0 +1,68 @@
+{% extends 'main.html'%}
+
+{% block content %}
+
+<section class="">
+    <div class="container">
+      <div class="text-center">
+        <h2>Detail of <strong class="text-success"> {{chemical.name }}</strong> </h2>
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <br>
+          </div>
+        </div>
+      </div>
+   
+        <div class="row">
+
+                     
+        <div class="col-md-6 col-lg-4 mb-4">
+          <div class="card bg-gradient-success">
+            
+            <hr>
+            <div  class="card">
+              <div class="listing-heading text-center">
+                <br>
+               <h2><strong class="text-success"> {{chemical.name }}</strong> </h2>
+              </div>
+              <hr>
+        
+            </div>
+          </div>
+        </div>
+        <div class="listing-heading text-center">
+            <br>
+            <h2 class="text-success">{{chemical.name }}</h2>
+      
+            <div class=" text-secondary">
+                <div class=" listing-heading ">
+                  <p> <strong> Unit: In -<i class="text-success"> {{chemical.unit}}</i></strong> </p>
+                  <hr>
+                  <p> <strong> Company: <i class="text-success">{{chemical.company}}</i></strong> </p>
+                  <hr>
+                  <p> <strong> Expire Date: <i class="text-success">{{chemical.expireDate}}</i></strong> </p>
+                  <hr>
+                  <p> <strong> Description: <i class="text-success">{{chemical.description}}</i></strong> </p>
+                
+                </div>
+                 
+                 </div>             
+              <hr>  
+              <form action="{% url 'addQuantity' chemical.id %}" method="post" enctype='multipart/form-data' validate>
+                {% csrf_token %}
+              <div class="listing-heading text-center">
+                <input type="number" name="quantity" placeholder="Quantity" required >
+                <input type="submit" class="btn btn-center btn-success" value="Add to List">
+                
+              </div>
+            </form>
+          </div>
+        
+        </div>
+      
+    </div>
+  </section>
+  
+
+
+{% endblock%}

@@ -1,0 +1,225 @@
+{% extends 'main.html'%}
+{% load static %}
+
+{%block content%}
+         <!-- Begin Page Content -->
+         <div class="container-fluid">
+            {% include 'partials/_alerts.html' %}
+            <!-- Page Heading -->
+            <h1 class="h3 mb-2 text-gray-800">Update order</h1>
+           
+            <!-- DataTales Example -->
+            <div class="card shadow mb-4">
+                
+                <div class="card-body" style="box-shadow:0 0 25px 0 rgb(92, 226, 121);" >
+                    <div class="col-auto" >
+                        {% if obj %}
+                                    <div class="p-2">
+                                        <div class="text-center" style="box-shadow:0 0 25px 0 rgb(92, 226, 121);">
+                                            <hr> 
+                                            <h1 class="h4 text-gray-900 mb-4">Update Request Status </h1>
+                                           
+                                            {%if obj.confirmed == True%}
+                                            Request
+                                            <span class="btn btn-warning ">Accepted</span> &nbsp;
+                                            {%endif%} 
+                                            {%if obj.received %}
+                                            And
+                                            <span class="btn btn-success ">Completed</span> &nbsp; 
+                                         {%endif%}  
+                                         <hr>      
+                                        </div>
+                                        <br>
+                                        
+                                       
+                                        {%if request.user.groups.all.0.name == 'Custodian' %}
+                                            
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label" align="right">Order Date</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" id="order_date" name="order_date" readonly class="form-control form-control-sm" value="{{obj.ordered_date}}">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label" align="right">Department</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" id="cust_name" name="pnumber"  readonly class="form-control form-control-sm" placeholder="{{obj.department}}"/>
+                                                </div>
+                                            </div>
+                                        
+                                        <div class="form-group row">
+                                        <label for="net_total" class="col-sm-3 col-form-label" align="right">Name</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" readonly name="tinnumber" class="form-control form-control-sm" id="net_total" value="{{obj.user.username}}"/>
+                                        </div>
+                                        </div> 
+                                        {% if obj.checked == False %}
+                                        {% for chemicals in obj.chemicals.all%}
+                                        
+                                        <div class="form-group row">
+                                            <label for="net_total" class="col-sm-3 col-form-label" align="right">Chemical Name</label>
+                                            <div class="col-sm-2">
+                                          
+                                            <input type="text" readonly name="pname" class="form-control form-control-sm" id="net_total" value="{{chemicals.chemical.name}}"/>
+                                             </div>
+                                             <label for="net_total" class="col-sm-1 col-form-label" align="right">Quantity</label>
+                                             <div class="col-sm-1">
+                                           
+                                             <input type="text" readonly name="pname" class="form-control form-control-sm" id="net_total" value="{{chemicals.quantity}}"/>
+                                              </div>
+                                         
+                                        </div>
+                                        
+                                        {%endfor%}
+                                        <form method="POST" action="" enctype='multipart/form-data' validate >
+                                               
+                                            {% csrf_token %}
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label" align="right">Secret number</label>
+                                                <div class="col-sm-2">
+                                                    <input type="password" id="pin" name="pin"   class="form-control form-control-sm" required />
+                                                </div>
+                                                <input type="hidden" name="next" value="{{ request.path }}">
+                                                <input type="submit"  class="btn btn-success" value="Proceed" >
+                                            </div>
+                                           
+                                            
+                                                </form>
+                                               
+                                        {% elif obj.checked %}       
+                                       
+                                        {% for chemicals in obj.chemicals.all%}
+                                        <form method="POST" action="{% url 'updatequantity' obj.id chemicals.id %}" enctype='multipart/form-data' validate >
+                                            {% csrf_token %}
+                                        <div class="form-group row">
+                                            <label for="net_total" class="col-sm-2 col-form-label" align="right">Chemical Name</label>
+                                            <div class="col-sm-2">
+                                          
+                                            <input type="text" readonly name="pname" class="form-control form-control-sm" id="net_total" value="{{chemicals.chemical.name}}"/>
+                                             </div>
+                                             <label for="net_total" class="col-sm-1 col-form-label" align="right">Quantity</label>
+                                             <div class="col-sm-1">
+                                           
+                                             <input type="text" readonly name="pname" class="form-control form-control-sm" id="net_total" value="{{chemicals.quantity}}"/>
+                                            </div>
+                                            {%if chemicals.recieved == True%}
+                                            <i class="fas fa-check-circle fa-1x text-success"></i>
+                                            <label for="net_total" class="col-sm-2 col-form-label" align="right">Issued Quantity</label>
+                                            <div class="col-sm-1">
+                                            <input type="number" readonly name="quantity" class="form-control form-control-sm"  value="{{chemicals.issuedquantity}}" required/>
+                                        </div>
+                                            {%else%}
+                                             <label for="net_total" class="col-sm-2 col-form-label" align="right">Issued Quantity</label>
+                                             <div class="col-sm-1">
+                                             <input type="number"  name="quantity" class="form-control form-control-sm"  value="" required/>
+                                            
+                                        
+                                             </div>
+                                             <input type="hidden" name="next" value="{{ request.path }}">
+                                             <div class="input-group-append"><input type="submit" name="issued" class="btn btn-success" value="Confirm">
+                                                
+                                            </div>
+                                            {%endif%}
+                                          
+                                        </div>
+                                        
+                                            </form>
+                                        {%endfor%}
+                                        {%endif%}
+
+                                        
+                                        <!-- <center>
+                                            <input type="number"   class="btn btn-info">
+                                        <input type="submit"  style="width:150px;" class="btn btn-success" value="Save">
+                                        <button class="btn btn-danger" type="button" data-dismiss="modal">Cancel</button>
+                                    
+                                        </center>
+             -->
+                                        
+                                        {%elif request.user.groups.all.0.name == 'Department' %}
+                                            <form action="{% url 'updateStatus' obj.id %}" method="POST" class="" enctype='multipart/form-data' validate >
+                                                {% csrf_token %}
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label" align="right">Order Date</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" id="order_date" name="order_date" readonly class="form-control form-control-sm" value="{{obj.ordered_date}}">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label" align="right">Department</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" id="cust_name" name="pnumber"  readonly class="form-control form-control-sm" placeholder="{{obj.department}}"/>
+                                                </div>
+                                            </div>
+                                        
+                                        <div class="form-group row">
+                                        <label for="net_total" class="col-sm-3 col-form-label" align="right">Name</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" readonly name="tinnumber" class="form-control form-control-sm" id="net_total" value="{{obj.user.username}}"/>
+                                        </div>
+                                        </div> 
+                                        {% for chemicals in obj.chemicals.all%}
+                                        
+                                        <div class="form-group row">
+                                            <label for="net_total" class="col-sm-3 col-form-label" align="right">Chemical Name</label>
+                                            <div class="col-sm-2">
+                                          
+                                            <input type="text" readonly name="pname" class="form-control form-control-sm" id="net_total" value="{{chemicals.chemical.name}}"/>
+                                             </div>
+                                             <label for="net_total" class="col-sm-1 col-form-label" align="right">Quantity</label>
+                                             <div class="col-sm-1">
+                                           
+                                             <input type="text" readonly name="pname" class="form-control form-control-sm" id="net_total" value="{{chemicals.quantity}}"/>
+                                              </div>
+                                         
+                                        </div>
+                                        
+                                            
+                                        {%endfor%}
+
+                                       
+
+                                        <div class="form-group row">
+                                            <label for="net_total" class="col-sm-3 col-form-label" align="right">Status</label>
+                                            <div class="col-sm-6">
+                                                <select name="status" class="form-control form-control-sm" id="payment_type" required>
+                                            
+                                                    <option value="">--select--</option>
+                                                    <option value="accept">Accept</option>
+                                                    <option value="deny">Deny</option>
+                                                      
+                                                    </select> </div>                
+                                        </div>
+                                        
+                        
+                                       
+            
+                                  
+            
+                                        <center>
+                                            <input type="hidden" name="next" value="{{ request.path }}">
+                                        <input type="submit"  style="width:150px;" class="btn btn-success" value="Save">
+                                        <button class="btn btn-danger" type="button" data-dismiss="modal">Cancel</button>
+                                    
+                                        </center>
+            
+            
+                                        </form>
+                                        {%endif%}
+                                        <hr>
+                                    </div>
+                        
+                        {%endif%}
+                                </div>
+                        
+                </div>
+            </div>
+
+        </div>
+       
+
+        
+
+
+
+{% endblock %}

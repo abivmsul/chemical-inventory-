@@ -1,0 +1,91 @@
+{% extends 'main.html'%}
+{% load static %}
+
+{%block content%}
+         <!-- Begin Page Content -->
+         <div class="container-fluid">
+            {% include 'partials/_alerts.html' %}
+            <!-- Page Heading -->
+            <div class="text-center">
+                <h2>Remove<strong class="text-danger"> Requests</strong> </h2>
+                
+              </div>
+           
+            <!-- DataTales Example -->
+            <div class="card shadow mb-4">
+                
+                <div class="card-body" style="box-shadow:0 0 25px 0 rgb(226, 130, 92);" >
+                    <div class="col-auto" >
+                        {% if obj %}
+                                    <div class="p-2">
+                                        <div class="text-center" >
+                                            
+                                            <form action="{% url 'updateStatus' obj.id %}" method="POST" class="" enctype='multipart/form-data' validate >
+                                                {% csrf_token %}
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label" align="right">Order Date</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" id="order_date" name="order_date" readonly class="form-control form-control-sm" value="{{obj.ordered_date}}">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label" align="right">Department</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" id="cust_name" name="pnumber"  readonly class="form-control form-control-sm" placeholder="{{obj.department}}"/>
+                                                </div>
+                                            </div>
+                                        
+                                        <div class="form-group row">
+                                        <label for="net_total" class="col-sm-3 col-form-label" align="right">Name</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" readonly name="tinnumber" class="form-control form-control-sm" id="net_total" value="{{obj.user.username}}"/>
+                                        </div>
+                                        </div> 
+                                        {% for chemicals in obj.chemicals.all%}
+                                        
+                                        <div class="form-group row">
+                                            <label for="net_total" class="col-sm-3 col-form-label" align="right">Chemical Name</label>
+                                            <div class="col-sm-2">
+                                          
+                                            <input type="text" readonly name="pname" class="form-control form-control-sm" id="net_total" value="{{chemicals.chemical.name}}"/>
+                                             </div>
+                                             <label for="net_total" class="col-sm-1 col-form-label" align="right">Quantity</label>
+                                             <div class="col-sm-1">
+                                           
+                                             <input type="text" readonly name="pname" class="form-control form-control-sm" id="net_total" value="{{chemicals.quantity}}"/>
+                                              </div>
+                                         
+                                        </div>
+                                        
+                                            
+                                        {%endfor%}
+                                        <hr>
+                                        <h2>Are You Sure You Want To <strong class="text-danger"> " Remove "</strong> Your<strong class="text-danger"> " Request " </strong>?</h2>
+                                        <center>
+                                            <a href="{% url 'remove' obj.id %}"><button class="btn btn-danger" type="button" ><i class="fas fa-trash fa-1x text-white-100"></i> Yes, Remove</button> </a>
+                                            <a href="/"><button class="btn btn-info" type="button"> Cancel</button> </a>
+                                           
+                                        </center>
+                                        <hr>
+            
+            
+                                        </form>
+                                        </div>
+                                        <br>
+                                       
+                                    </div>
+                        
+                        {%endif%}
+                                </div>
+                        
+                </div>
+            </div>
+
+        </div>
+       
+
+        
+
+
+
+{% endblock %}

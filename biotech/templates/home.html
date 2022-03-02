@@ -1,0 +1,131 @@
+{% extends 'main.html'%}
+{% load static%}
+{% block content %}
+
+
+
+<section class="hero">
+    <div class="container">
+      <div class="text-center">
+{% if request.user.is_authenticated %}
+<h1>Welcome to National Agricultural Biotechnology Research center</h1>
+<h1>Welcome Researcher, "{{user}}"</h1>
+
+<h3> <a href="{% url 'myRequest' %}" > My request </a></h3>
+<h3> <a href="{% url 'chemicalList' %}" > Request Chemical </a></h3>
+<h3> <a href="" > Request New Chemical </a></h3>
+
+</div>
+</div>
+</section>
+{% else%}
+<section class="hero">
+  <div class="container mb-5">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <h1 class="hero-heading mb-0">Welcome to  <br> <strong class="text-primary">National Agricultural Biotechnology Research center</strong></h1>
+        <div class="row">
+          <div class="col-lg-10">
+            <p class="lead text-muted mt-4 mb-4"></p>
+          </div>
+        </div>
+        <form action="" class="subscription-form"></form>
+          <div class="form-group">
+            <a href="#" data-toggle="modal" data-target="#search" ><button type="submit" class="btn btn-primary">==> Get Started <==</button></a>
+          </div>
+        </form>
+      </div>
+      <div class="col-lg-6"><img src="{% static 'image/bio.jpg'%}" alt="..." class="hero-image img-fluid d-none d-lg-block"></div>
+    </div>
+  </div>
+</section>
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Request History</h6>
+  </div>
+  <div class="card-body">
+      <div class="table-responsive">
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead align="center">
+          <tr>
+              <th>NO </th>
+              <th>Requested Date </th>
+              <th>Requested By </th>
+              <th>Chemical Name</th>
+              <th>Quantity </th>
+              <th>Unit </th>
+              <th>Status</th>
+              <th>Action </th>
+          </tr>
+      </thead>
+      <tbody>
+       {% for requests in requests%}
+        
+          <tr align="center">
+              <td>{{forloop.counter }}</td>
+              <td>{{requests.ordered_date}}</td>
+              <td>{{requests.user.username}}</td>
+              <td>
+                  <table  class="table">
+              {% for requestedchemical in requests.chemicals.all %} 
+                  <tr align="center">
+              <td>{{requestedchemical.chemical.name}}</td>
+                  </tr>    
+              {% endfor %}
+              </table>
+              </td>
+              <td>
+                  <table  class="table">
+                      {% for requestedchemical in requests.chemicals.all %} 
+                  <tr align="center">
+                      <td>{{requestedchemical.quantity}}</td>
+                  </tr>    
+                       {% endfor %}
+                  </table>
+              </td>
+              <td>
+                  <table  class="table" >
+                      {% for requestedchemical in requests.chemicals.all %} 
+                  <tr align="center">
+                      <td>{{requestedchemical.chemical.unit}}</td>
+                  </tr>    
+                       {% endfor %}
+                  </table>
+              </td>
+      
+              <td>
+                  {% if requests.received  %}
+                  <span class="btn btn-success btn-sm">Completed</span> &nbsp;
+                  {%else%}
+                  {% if requests.confirmed %}
+                  <span class="btn btn-warning btn-sm">Confirmed</span> &nbsp;
+                  {% elif requests.confirmed == False  %}
+                  <span class="btn btn-info btn-sm">Pending</span> &nbsp;
+                  {%endif%}
+                  {%endif%}
+              </td>
+              <td> <a  href="" >
+                  <span class="btn btn-info btn-sm">Edit</span> 
+              </a>
+              </td>
+              
+             
+              </tr>
+              {%empty%}    
+              <tr>
+                  <td colspan='5'>There are no requests</td>
+              </tr>   
+             
+          </tr>
+          {%endfor%}  
+        
+      </tbody>
+    </table>
+  </div>
+  </div>
+  </div>
+
+{% endif %} 
+
+
+{% endblock%}

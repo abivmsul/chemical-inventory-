@@ -1,0 +1,429 @@
+{% extends 'main.html'%}
+
+{% block content %}
+
+
+{% if page == 'animal' %}
+<div class="container-fluid">
+    <div class="text-center">
+        <h2>Requests From <strong class="text-success"> Animal Bio-Technology</strong> Researcher </h2>
+        
+      </div>
+  <!-- Page Heading -->
+
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-success">Requests</h6>
+    </div>
+    <div class="card-body" style="box-shadow:0 0 25px 0 rgb(92, 226, 121);">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                 <tr>
+                <th>NO</th>
+                <th>Requested Date</th>
+                <th>Department</th>
+                <th>Researcher Name</th>
+                <th>Chemical Name</th>
+                <th>Quantity</th>
+                <th>Issued Quantity</th>
+                <th>Unit</th>
+                <th>Status</th>
+                <th>Action </th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>NO</th>
+                <th>Requested Date</th>
+                <th>Department</th>
+                <th>Researcher Name</th>
+                <th>Chemical Name</th>
+                <th>Quantity</th>
+                <th>Issued Quantity</th>
+                <th>Unit</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </tfoot>
+        <tbody>
+         {% for requests in obj%}
+          
+            <tr align="center">
+                <td>{{forloop.counter }}</td>
+                <td>{{requests.ordered_date}}</td>
+                <td>{{requests.department}}</td>
+                <td>{{requests.user.username}}</td>
+                <td>
+                    <table class="table table-bordered">
+                {% for requestedchemical in requests.chemicals.all %} 
+                    <tr align="center">
+                <td>{{requestedchemical.chemical.name}} &nbsp; 
+                    {%if requestedchemical.recieved == True%}
+                    <i class="fas fa-check-circle fa-1x text-success"></i>
+                    {%endif%}
+                </td>
+                    </tr>    
+                {% endfor %}
+                </table>
+                </td>
+                <td>
+                    <table  class="table table-bordered">
+                        {% for requestedchemical in requests.chemicals.all %} 
+                    <tr align="center">
+                        <td>{{requestedchemical.quantity}}</td>
+                    </tr>    
+                         {% endfor %}
+                    </table>
+                </td>
+                   <td>
+                    <table  class="table table-bordered">
+                        {% for requestedchemical in requests.chemicals.all %} 
+                    <tr align="center">
+                        <td>{{requestedchemical.issuedquantity}} </td>
+                    </tr>    
+                         {% endfor %}
+                    </table>
+                </td>
+                <td>
+                    <table class="table table-bordered" >
+                        {% for requestedchemical in requests.chemicals.all %} 
+                    <tr align="center">
+                        <td>{{requestedchemical.chemical.unit}}</td>
+                    </tr>    
+                         {% endfor %}
+                    </table>
+                </td>
+        
+                <td>
+                    {% if requests.received  %}
+                    <span class="btn btn-success btn-sm">Completed</span> &nbsp;
+                    {% elif requests.deny == True %}
+                    <span class="btn btn-danger btn-sm">Request Denied</span> &nbsp;
+                    {% elif requests.confirmed %}
+                    <span class="btn btn-warning btn-sm">Confirmed</span> &nbsp;
+                    {% elif requests.confirmed == False %}
+                    <span class="btn btn-info btn-sm">Pending</span> &nbsp;
+                    {%endif%}
+                   
+                </td>
+                <td> <a  href="{% url 'requestDetal' requests.id %}" >
+                    <i class="fas fa-pen-square fa-2x text-info"></i>
+                </a>
+                &nbsp;
+                <a href="#"  data-toggle="modal" data-target="#addproduct" class="fas fa-print fa-2x text-success"></a>
+               
+                </td>
+                
+               
+                </tr>
+                {%empty%}    
+                <tr>
+                    <td colspan='5'>You Dont have any requests</td>
+                </tr>   
+               
+            
+            {%endfor%}
+            
+
+            <!-- <tr>
+                <td colspan="8">
+        
+                <a class='btn btn-sutext-success float-right' href='/'>Back</a>
+                </td>
+            </tr> -->
+          
+        
+          
+        </tbody>
+      </table>
+    </div>
+    </div>
+    </div>
+    </div>
+ {%elif page == 'plant' %}
+ <div class="container-fluid">
+    <div class="text-center">
+        <h2>Requests From <strong class="text-success"> Plant Bio-Technology</strong> Researcher</h2>
+        
+      </div>
+  <!-- Page Heading -->
+
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-success">Requests</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                 <tr>
+                <th>NO</th>
+                <th>Requested Date</th>
+                <th>Department</th>
+                <th>Researcher Name</th>
+                <th>Chemical Name</th>
+                <th>Quantity</th>
+                <th>Issued Quantity</th>
+                <th>Unit</th>
+                <th>Status</th>
+                <th>Action </th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>NO</th>
+                <th>Requested Date</th>
+                <th>Department</th>
+                <th>Researcher Name</th>
+                <th>Chemical Name</th>
+                <th>Quantity</th>
+                <th>Issued Quantity</th>
+                <th>Unit</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </tfoot>
+        <tbody>
+         {% for requests in obj%}
+          
+            <tr align="center">
+                <td>{{forloop.counter }}</td>
+                <td>{{requests.ordered_date}}</td>
+                <td>{{requests.department}}</td>
+                <td>{{requests.user.username}}</td>
+                <td>
+                    <table class="table table-bordered">
+                {% for requestedchemical in requests.chemicals.all %} 
+                    <tr align="center">
+                <td>{{requestedchemical.chemical.name}} &nbsp; 
+                    {%if requestedchemical.recieved == True%}
+                    <i class="fas fa-check-circle fa-1x text-success"></i>
+                    {%endif%}
+                </td>
+                    </tr>    
+                {% endfor %}
+                </table>
+                </td>
+                <td>
+                    <table  class="table table-bordered">
+                        {% for requestedchemical in requests.chemicals.all %} 
+                    <tr align="center">
+                        <td>{{requestedchemical.quantity}}</td>
+                    </tr>    
+                         {% endfor %}
+                    </table>
+                </td>
+                   <td>
+                    <table  class="table table-bordered">
+                        {% for requestedchemical in requests.chemicals.all %} 
+                    <tr align="center">
+                        <td>{{requestedchemical.issuedquantity}} </td>
+                    </tr>    
+                         {% endfor %}
+                    </table>
+                </td>
+                <td>
+                    <table class="table table-bordered" >
+                        {% for requestedchemical in requests.chemicals.all %} 
+                    <tr align="center">
+                        <td>{{requestedchemical.chemical.unit}}</td>
+                    </tr>    
+                         {% endfor %}
+                    </table>
+                </td>
+        
+                <td>
+                    {% if requests.received  %}
+                    <span class="btn btn-success btn-sm">Completed</span> &nbsp;
+                    {% elif requests.deny == True %}
+                    <span class="btn btn-danger btn-sm">Request Denied</span> &nbsp;
+                    {% elif requests.confirmed %}
+                    <span class="btn btn-warning btn-sm">Confirmed</span> &nbsp;
+                    {% elif requests.confirmed == False %}
+                    <span class="btn btn-info btn-sm">Pending</span> &nbsp;
+                    {%endif%}
+                   
+                </td>
+                <td> <a  href="{% url 'requestDetal' requests.id %}" >
+                    <i class="fas fa-pen-square fa-2x text-info"></i>
+                </a>
+                &nbsp;
+                
+                <a  href="{% url 'requestDetal' requests.id %}" >
+                    <i class="fas fa-print fa-2x text-success"></i>
+                </a>
+                </td>
+                
+               
+                </tr>
+                {%empty%}    
+                <tr>
+                    <td colspan='5'>You Dont have any requests</td>
+                </tr>   
+               
+            
+            {%endfor%}
+            
+
+            <!-- <tr>
+                <td colspan="8">
+        
+                <a class='btn btn-sutext-success float-right' href='/'>Back</a>
+                </td>
+            </tr> -->
+          
+        
+          
+        </tbody>
+      </table>
+    </div>
+    </div>
+    </div>
+    </div>
+{%elif page == 'microbial' %}
+<div class="container-fluid">
+    <div class="text-center">
+        <h2>Requests From <strong class="text-success"> Microbial</strong> Researcher </h2>
+        
+      </div>
+  <!-- Page Heading -->
+
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-success">Requests</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                 <tr>
+                <th>NO</th>
+                <th>Requested Date</th>
+                <th>Department</th>
+                <th>Researcher Name</th>
+                <th>Chemical Name</th>
+                <th>Quantity</th>
+                <th>Issued Quantity</th>
+                <th>Unit</th>
+                <th>Status</th>
+                <th>Action </th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>NO</th>
+                <th>Requested Date</th>
+                <th>Department</th>
+                <th>Researcher Name</th>
+                <th>Chemical Name</th>
+                <th>Quantity</th>
+                <th>Issued Quantity</th>
+                <th>Unit</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </tfoot>
+        <tbody>
+         {% for requests in obj%}
+          
+            <tr align="center">
+                <td>{{forloop.counter }}</td>
+                <td>{{requests.ordered_date}}</td>
+                <td>{{requests.department}}</td>
+                <td>{{requests.user.username}}</td>
+                <td>
+                    <table class="table table-bordered">
+                {% for requestedchemical in requests.chemicals.all %} 
+                    <tr align="center">
+                <td>{{requestedchemical.chemical.name}} &nbsp; 
+                    {%if requestedchemical.recieved == True%}
+                    <i class="fas fa-check-circle fa-1x text-success"></i>
+                    {%endif%}
+                </td>
+                    </tr>    
+                {% endfor %}
+                </table>
+                </td>
+                <td>
+                    <table  class="table table-bordered">
+                        {% for requestedchemical in requests.chemicals.all %} 
+                    <tr align="center">
+                        <td>{{requestedchemical.quantity}}</td>
+                    </tr>    
+                         {% endfor %}
+                    </table>
+                </td>
+                   <td>
+                    <table  class="table table-bordered">
+                        {% for requestedchemical in requests.chemicals.all %} 
+                    <tr align="center">
+                        <td>{{requestedchemical.issuedquantity}} </td>
+                    </tr>    
+                         {% endfor %}
+                    </table>
+                </td>
+                <td>
+                    <table class="table table-bordered" >
+                        {% for requestedchemical in requests.chemicals.all %} 
+                    <tr align="center">
+                        <td>{{requestedchemical.chemical.unit}}</td>
+                    </tr>    
+                         {% endfor %}
+                    </table>
+                </td>
+        
+                <td>
+                    {% if requests.received  %}
+                    <span class="btn btn-success btn-sm">Completed</span> &nbsp;
+                    {% elif requests.deny == True %}
+                    <span class="btn btn-danger btn-sm">Request Denied</span> &nbsp;
+                    {% elif requests.confirmed %}
+                    <span class="btn btn-warning btn-sm">Confirmed</span> &nbsp;
+                    {% elif requests.confirmed == False %}
+                    <span class="btn btn-info btn-sm">Pending</span> &nbsp;
+                    {%endif%}
+                   
+                </td>
+                <td> <a  href="{% url 'requestDetal' requests.id %}" >
+                    <i class="fas fa-pen-square fa-2x text-info"></i>
+                </a>
+                &nbsp;
+                
+                <a  href="{% url 'requestDetal' requests.id %}" >
+                    <i class="fas fa-print fa-2x text-success"></i>
+                </a>
+                </td>
+                
+               
+                </tr>
+                {%empty%}    
+                <tr>
+                    <td colspan='5'>You Dont have any requests</td>
+                </tr>   
+               
+            
+            {%endfor%}
+            
+
+            <!-- <tr>
+                <td colspan="8">
+        
+                <a class='btn btn-sutext-success float-right' href='/'>Back</a>
+                </td>
+            </tr> -->
+          
+        
+          
+        </tbody>
+      </table>
+    </div>
+    </div>
+    </div>
+    </div>
+{%endif%}
+
+{% endblock%}

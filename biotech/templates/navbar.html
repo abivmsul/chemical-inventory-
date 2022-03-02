@@ -1,0 +1,40 @@
+{% load static%}
+{% load cart_template_tags %}
+
+<header class="header">
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container"><a href="/" class="navbar-brand">LOGO</a>
+      <!-- <div class="container"><a href="./" class="navbar-brand"><Strong>T</Strong></Strong>utor Mgmt System</a> -->
+      <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+      <div id="navbarSupportedContent" class="collapse navbar-collapse" >
+        <ul class="navbar-nav ml-auto"> 
+          <li class="nav-item"> <a href="" class="nav-link">Departments</a></li>
+          <li class="nav-item"> <a href="" class="nav-link">About</a></li>
+          <li class="nav-item"> <a href="" class="nav-link">Contact Us</a></li>
+          
+          {% if request.user.is_authenticated %}
+          <li class="nav-item"> <a href="{% url 'requestSummary' %}" class="nav-link">{{ request.user|cart_item_count }}<i class="fas fa-shopping-cart"></i> <span class="clearfix d-none d-sm-inline-block"> Chemicals in the List </span></a></li>
+          
+          <li >
+            <a class="nav-link waves-effect" href="">
+              <span class="clearfix d-none d-sm-inline-block"> Logout </span>
+            </a>
+          </li>
+          {% else %}
+          <li >
+            <a class="nav-link waves-effect" href="">
+              <span class="clearfix d-none d-sm-inline-block"> Login </span>
+            </a>
+          </li>
+          <li >
+            <a class="nav-link waves-effect" href="">
+              <span class="clearfix d-none d-sm-inline-block"> Signup </span>
+            </a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+
+    </div>
+    <hr>
+  </nav>
