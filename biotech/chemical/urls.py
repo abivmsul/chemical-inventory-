@@ -60,4 +60,8 @@ path('plantchemicals/',views.plantChemicals, name= "plantchemicals"),
     # path('register/',views.register, name= "register"),
     # path('request/',views.requestChemical, name= "request"),
     
+
+# report 
+
+path('csvChemicalReport/<str:dept>/', views.csvChemicalReport, name='csvChemicalReport'),
 ]

@@ -1,68 +1,87 @@
 {% extends 'main.html'%}
 
 {% block content %}
+ <!-- Begin Page Content -->
+ <div class="container-fluid " >
 
-<section class="">
-    <div class="container">
-      <div class="text-center">
-        <h2>Detail of <strong class="text-success"> {{chemical.name }}</strong> </h2>
-        <div class="row">
-          <div class="col-lg-8 mx-auto">
-            <br>
-          </div>
-        </div>
-      </div>
-   
-        <div class="row">
+  <!-- Page Heading -->
+  <div class="d-sm-flex align-items-center justify-content-between mb-auto">
+      <h2>Details of  <strong class="text-info">{{chemical.name}}</strong> </h2>
+  </div>
 
+<!-- Illustrations -->
+<div class="card shadow mb-4 col-auto">
+  <div class="card-header py-3" >
+      <h6 class="m-0 font-weight-bold text-info">{{chemical.name}}</h6>
+  </div>
+  <div class="card-body align-items-center" style="box-shadow:0 0 25px 0 rgb(29, 175, 185);">
+      <div class="row">
+          
+      <div class="col-auto col-md-auto mb-4 align-items-center">
+          <div class="card border-left-info shadow h-100 py-auto " >
+              <div class="card-body align-items-center">
+                  <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="table-responsive">
+                          <table class="table table-bordered text-gray-800" id="dataTable" width="100%" cellspacing="0" >
+                              <thead>
+                               <tr>
+                              
+                              <th>Chemical Name</th>
+                              <th>Company</th>
+                              <th>Unit</th>
+                              
+                              <th>Description </th>
+                          </tr>
+                      </thead>
                      
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="card bg-gradient-success">
-            
-            <hr>
-            <div  class="card">
-              <div class="listing-heading text-center">
-                <br>
-               <h2><strong class="text-success"> {{chemical.name }}</strong> </h2>
+                      <tbody>
+                      
+                        
+                          <tr align="center">
+                             
+                              <td>{{chemical.name}}</td>
+                              <td>{{chemical.company}}</td>
+                              <td>{{chemical.unit}}</td>
+                              <td>{{chemical.description}}</td>  
+                              <td> <form action="{% url 'addQuantity' chemical.id %}" method="post" enctype='multipart/form-data' validate>
+                                {% csrf_token %}
+                           
+                                <input type="number" name="quantity" placeholder="  - quantity" required >
+                             </td>
+                              </tr>
+                               
+                              
+                              
+                            </tbody>
+                          </table>
+                        </div>  
+                        <!-- <div class="h2 mb-0 font-weight-bold text-gray-800">{{chemical.name }}</div>
+                          
+                          <div class="text-2xs font-weight-bold text-info mb-1"><details>{{chemical.description}}</details> </div>
+                        -->
+                      </div>
+                      
+                        <input type="submit" class="btn btn-center btn-info" value="Add to List">
+                     
+                    </form>
+                         
+                      
+                  </div>
               </div>
-              <hr>
-        
-            </div>
           </div>
-        </div>
-        <div class="listing-heading text-center">
-            <br>
-            <h2 class="text-success">{{chemical.name }}</h2>
+      </div>
+     
       
-            <div class=" text-secondary">
-                <div class=" listing-heading ">
-                  <p> <strong> Unit: In -<i class="text-success"> {{chemical.unit}}</i></strong> </p>
-                  <hr>
-                  <p> <strong> Company: <i class="text-success">{{chemical.company}}</i></strong> </p>
-                  <hr>
-                  <p> <strong> Expire Date: <i class="text-success">{{chemical.expireDate}}</i></strong> </p>
-                  <hr>
-                  <p> <strong> Description: <i class="text-success">{{chemical.description}}</i></strong> </p>
-                
-                </div>
-                 
-                 </div>             
-              <hr>  
-              <form action="{% url 'addQuantity' chemical.id %}" method="post" enctype='multipart/form-data' validate>
-                {% csrf_token %}
-              <div class="listing-heading text-center">
-                <input type="number" name="quantity" placeholder="Quantity" required >
-                <input type="submit" class="btn btn-center btn-success" value="Add to List">
-                
-              </div>
-            </form>
-          </div>
-        
-        </div>
+    
       
-    </div>
-  </section>
-  
+  </div>
+     
+  </div>
+</div>
+
+</div>
+
 
 
 {% endblock%}

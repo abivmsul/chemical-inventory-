@@ -6,7 +6,7 @@
 {% if page == 'animal' %}
 <div class="container-fluid">
     <div class="text-center">
-        <h2>Requests From <strong class="text-success"> Animal Bio-Technology</strong> Researcher </h2>
+        <h2>Requests From <strong class="text-info"> Animal Bio-Technology</strong> Researcher </h2>
         
       </div>
   <!-- Page Heading -->
@@ -14,11 +14,11 @@
 
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-success">Requests</h6>
+        <h6 class="m-0 font-weight-bold text-info">Requests</h6>
     </div>
-    <div class="card-body" style="box-shadow:0 0 25px 0 rgb(92, 226, 121);">
+    <div class="card-body" style="box-shadow:0 0 25px 0 rgb(29, 175, 185);">
         <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <table class="table table-bordered text-gray-800" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                  <tr>
                 <th>NO</th>
@@ -56,7 +56,7 @@
                 <td>{{requests.department}}</td>
                 <td>{{requests.user.username}}</td>
                 <td>
-                    <table class="table table-bordered">
+                    <table class="table table-bordered text-gray-800">
                 {% for requestedchemical in requests.chemicals.all %} 
                     <tr align="center">
                 <td>{{requestedchemical.chemical.name}} &nbsp; 
@@ -69,7 +69,7 @@
                 </table>
                 </td>
                 <td>
-                    <table  class="table table-bordered">
+                    <table  class="table table-bordered text-gray-800">
                         {% for requestedchemical in requests.chemicals.all %} 
                     <tr align="center">
                         <td>{{requestedchemical.quantity}}</td>
@@ -78,7 +78,7 @@
                     </table>
                 </td>
                    <td>
-                    <table  class="table table-bordered">
+                    <table  class="table table-bordered text-gray-800">
                         {% for requestedchemical in requests.chemicals.all %} 
                     <tr align="center">
                         <td>{{requestedchemical.issuedquantity}} </td>
@@ -87,7 +87,7 @@
                     </table>
                 </td>
                 <td>
-                    <table class="table table-bordered" >
+                    <table class="table table-bordered text-gray-800" >
                         {% for requestedchemical in requests.chemicals.all %} 
                     <tr align="center">
                         <td>{{requestedchemical.chemical.unit}}</td>
@@ -112,7 +112,7 @@
                     <i class="fas fa-pen-square fa-2x text-info"></i>
                 </a>
                 &nbsp;
-                <a href="#"  data-toggle="modal" data-target="#addproduct" class="fas fa-print fa-2x text-success"></a>
+                <a href="#"  data-toggle="modal" data-target="#addproduct" class="fas fa-print fa-2x text-info"></a>
                
                 </td>
                 
@@ -145,7 +145,7 @@
  {%elif page == 'plant' %}
  <div class="container-fluid">
     <div class="text-center">
-        <h2>Requests From <strong class="text-success"> Plant Bio-Technology</strong> Researcher</h2>
+        <h2>Requests From <strong class="text-info"> Plant Bio-Technology</strong> Researcher </h2>
         
       </div>
   <!-- Page Heading -->
@@ -153,11 +153,11 @@
 
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-success">Requests</h6>
+        <h6 class="m-0 font-weight-bold text-info">Requests</h6>
     </div>
-    <div class="card-body">
+    <div class="card-body" style="box-shadow:0 0 25px 0 rgb(29, 175, 185);">
         <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <table class="table table-bordered text-gray-800" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                  <tr>
                 <th>NO</th>
@@ -195,7 +195,7 @@
                 <td>{{requests.department}}</td>
                 <td>{{requests.user.username}}</td>
                 <td>
-                    <table class="table table-bordered">
+                    <table class="table table-bordered text-gray-800">
                 {% for requestedchemical in requests.chemicals.all %} 
                     <tr align="center">
                 <td>{{requestedchemical.chemical.name}} &nbsp; 
@@ -208,7 +208,7 @@
                 </table>
                 </td>
                 <td>
-                    <table  class="table table-bordered">
+                    <table  class="table table-bordered text-gray-800">
                         {% for requestedchemical in requests.chemicals.all %} 
                     <tr align="center">
                         <td>{{requestedchemical.quantity}}</td>
@@ -217,7 +217,7 @@
                     </table>
                 </td>
                    <td>
-                    <table  class="table table-bordered">
+                    <table  class="table table-bordered text-gray-800">
                         {% for requestedchemical in requests.chemicals.all %} 
                     <tr align="center">
                         <td>{{requestedchemical.issuedquantity}} </td>
@@ -226,7 +226,7 @@
                     </table>
                 </td>
                 <td>
-                    <table class="table table-bordered" >
+                    <table class="table table-bordered text-gray-800" >
                         {% for requestedchemical in requests.chemicals.all %} 
                     <tr align="center">
                         <td>{{requestedchemical.chemical.unit}}</td>
@@ -251,10 +251,8 @@
                     <i class="fas fa-pen-square fa-2x text-info"></i>
                 </a>
                 &nbsp;
-                
-                <a  href="{% url 'requestDetal' requests.id %}" >
-                    <i class="fas fa-print fa-2x text-success"></i>
-                </a>
+                <a href="#"  data-toggle="modal" data-target="#addproduct" class="fas fa-print fa-2x text-info"></a>
+               
                 </td>
                 
                
@@ -286,7 +284,7 @@
 {%elif page == 'microbial' %}
 <div class="container-fluid">
     <div class="text-center">
-        <h2>Requests From <strong class="text-success"> Microbial</strong> Researcher </h2>
+        <h2>Requests From <strong class="text-info"> Microbial Bio-Technology</strong> Researcher </h2>
         
       </div>
   <!-- Page Heading -->
@@ -294,11 +292,11 @@
 
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-success">Requests</h6>
+        <h6 class="m-0 font-weight-bold text-info">Requests</h6>
     </div>
-    <div class="card-body">
+    <div class="card-body" style="box-shadow:0 0 25px 0 rgb(29, 175, 185);">
         <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <table class="table table-bordered text-gray-800" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                  <tr>
                 <th>NO</th>
@@ -336,7 +334,7 @@
                 <td>{{requests.department}}</td>
                 <td>{{requests.user.username}}</td>
                 <td>
-                    <table class="table table-bordered">
+                    <table class="table table-bordered text-gray-800">
                 {% for requestedchemical in requests.chemicals.all %} 
                     <tr align="center">
                 <td>{{requestedchemical.chemical.name}} &nbsp; 
@@ -349,7 +347,7 @@
                 </table>
                 </td>
                 <td>
-                    <table  class="table table-bordered">
+                    <table  class="table table-bordered text-gray-800">
                         {% for requestedchemical in requests.chemicals.all %} 
                     <tr align="center">
                         <td>{{requestedchemical.quantity}}</td>
@@ -358,7 +356,7 @@
                     </table>
                 </td>
                    <td>
-                    <table  class="table table-bordered">
+                    <table  class="table table-bordered text-gray-800">
                         {% for requestedchemical in requests.chemicals.all %} 
                     <tr align="center">
                         <td>{{requestedchemical.issuedquantity}} </td>
@@ -367,7 +365,7 @@
                     </table>
                 </td>
                 <td>
-                    <table class="table table-bordered" >
+                    <table class="table table-bordered text-gray-800" >
                         {% for requestedchemical in requests.chemicals.all %} 
                     <tr align="center">
                         <td>{{requestedchemical.chemical.unit}}</td>
@@ -392,10 +390,8 @@
                     <i class="fas fa-pen-square fa-2x text-info"></i>
                 </a>
                 &nbsp;
-                
-                <a  href="{% url 'requestDetal' requests.id %}" >
-                    <i class="fas fa-print fa-2x text-success"></i>
-                </a>
+                <a href="#"  data-toggle="modal" data-target="#addproduct" class="fas fa-print fa-2x text-info"></a>
+               
                 </td>
                 
                

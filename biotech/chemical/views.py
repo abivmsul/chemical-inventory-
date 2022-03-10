@@ -9,6 +9,8 @@ from django.views.generic import View
 from django.contrib import messages
 from chemical.forms import AddChemicalForm
 from . import models
+from django.http import HttpResponse
+import csv
 # Create your views here.
 
 def login(request):
@@ -34,8 +36,12 @@ def custodianHomeView (request):
 
 @login_required(login_url='login')
 def departmentHomeView (request):  
-   
-    context = {}
+    animalChemicals = AnimalStore.objects.all().count()
+    plantChemicals = PlantStore.objects.all().count()
+    microbialChemicals = MicrobialStore.objects.all().count()
+
+    # animalResearcher = Researcher.objects.filter()
+    context = { 'animalChemicals': animalChemicals, 'plantChemicals':plantChemicals, 'microbialChemicals': microbialChemicals }
     return render(request, 'department/department_home.html', context)
 
 @login_required(login_url='login')
@@ -369,25 +375,43 @@ def plantChemicals (request):
 # Chemicallsssss LIstsssss
 def chemicalList (request):
     form = AddChemicalForm()
+    if request.GET.get('q') != None:
+        q = request.GET.get('q')  
+    else:
+        q = ''
+    chemical = Chemical.objects.filter(name__icontains = q)
     if request.method =='POST':
         form = AddChemicalForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect ('chemicalList')
-    context = {'chemical': Chemical.objects.all, 'form': form }
+    
+    context = {'chemical': chemical, 'form': form }
     return render(request, 'chemical_list.html', context)
 
 def animalchemicalList (request):
     page = 'animal'
-    context = {'page':page ,'chemical': AnimalStore.objects.all}
+    if request.GET.get('q') != None:
+        q = request.GET.get('q')  
+    else:
+        q = ''
+    context = {'page':page ,'chemical': AnimalStore.objects.filter(chemical__name__icontains = q)}
     return render(request, 'chemical_list.html', context)
 def plantchemicalList (request):
     page = 'plant'
-    context = {'page':page ,'chemical': PlantStore.objects.all}
+    if request.GET.get('q') != None:
+        q = request.GET.get('q')  
+    else:
+        q = ''
+    context = {'page':page ,'chemical': PlantStore.objects.filter(chemical__name__icontains = q)}
     return render(request, 'chemical_list.html', context)
 def microbialchemicalList (request):
     page = 'microbial'
-    context = {'page':page ,'chemical': MicrobialStore.objects.all}
+    if request.GET.get('q') != None:
+        q = request.GET.get('q')  
+    else:
+        q = ''
+    context = {'page':page ,'chemical': MicrobialStore.objects.filter(chemical__name__icontains = q)}
     return render(request, 'chemical_list.html', context)
 
 def chemicalDetail (request,pk):
@@ -569,3 +593,35 @@ class myRequest(LoginRequiredMixin,View):
             request = []    
         context = { 'obj': Request.objects.filter(user=self.request.user,requested=True)}
         return render(self.request, 'my_request.html', context)
+
+
+def csvChemicalReport(request,dept):
+    if dept == 'animal':
+        response = HttpResponse(content_type = 'text/csv')
+        response['content-diposition'] = 'attachment; filename = Animalchemicals.csv'
+
+        #create csv writer
+        writer = csv.writer(response)
+
+        animalChemical = AnimalStore.objects.all()
+
+        #column of file 
+        writer.writerow([' CHEMICAL NAME ','COMPANY','QUANTITY','UNIT','SHELF','CABINATE','EXPIRE DATE'])
+        for chemical in animalChemical:
+            writer.writerow([chemical.chemical.name, chemical.chemical.company, chemical.available, chemical.chemical.unit, chemical.shelf, chemical.cabinate, chemical.expireDate])
+        return response    
+    
+    elif dept == 'plant':
+        response = HttpResponse(content_type = 'text/csv')
+        response['content-diposition'] = 'attachment; filename = Animalchemicals.csv'
+
+        #create csv writer
+        writer = csv.writer(response)
+
+        animalChemical = PlantStore.objects.all()
+
+        #column of file 
+        writer.writerow(['Chemical Name','Company','Quantity','Unit','Shelf','Cabinate','Expire Date'])
+        for chemical in animalChemical:
+            writer.writerow([chemical.chemical.name, chemical.chemical.company, chemical.available, chemical.chemical.unit, chemical.shelf, chemical.cabinate, chemical.expireDate])
+        return response    

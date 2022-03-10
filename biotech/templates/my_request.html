@@ -7,7 +7,7 @@
 <div class="container-fluid">
     {% include 'partials/_alerts.html' %}
     <div class="text-center">
-        <h2>My<strong class="text-success"> Requests</strong> </h2>
+        <h2>My<strong class="text-info"> Requests</strong> </h2>
         
       </div>
   <!-- Page Heading -->
@@ -15,17 +15,17 @@
 
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-success">Requests</h6>
+        <h6 class="m-0 font-weight-bold text-info">Requests</h6>
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <table class="table table-bordered text-gray-800 " id="dataTable" width="100%" cellspacing="0">
                 <thead>
                  <tr>
                 <th>NO</th>
                 <th>Requested Date</th>
                 <th>Department</th>
-                <th>Researcher Name</th>
+                <th>Name</th>
                 <th>Chemical Name</th>
                 <th>Quantity</th>
                 <th>Issued Quantity</th>
@@ -39,7 +39,7 @@
                 <th>NO</th>
                 <th>Requested Date</th>
                 <th>Department</th>
-                <th>Researcher Name</th>
+                <th>Name</th>
                 <th>Chemical Name</th>
                 <th>Quantity</th>
                 <th>Issued Quantity</th>
@@ -57,7 +57,7 @@
                 <td>{{requests.department}}</td>
                 <td>{{requests.user.username}}</td>
                 <td>
-                    <table class="table table-bordered">
+                    <table class="table table-bordered text-gray-800">
                 {% for requestedchemical in requests.chemicals.all %} 
                     <tr align="center">
                 <td>{{requestedchemical.chemical.name}} &nbsp; 
@@ -72,7 +72,7 @@
                 </table>
                 </td>
                 <td>
-                    <table  class="table table-bordered">
+                    <table  class="table table-bordered text-gray-800">
                         {% for requestedchemical in requests.chemicals.all %} 
                     <tr align="center">
                         <td>{{requestedchemical.quantity}}</td>
@@ -81,7 +81,7 @@
                     </table>
                 </td>
                    <td>
-                    <table  class="table table-bordered">
+                    <table  class="table table-bordered text-gray-800">
                         {% for requestedchemical in requests.chemicals.all %} 
                     <tr align="center">
                         <td>{{requestedchemical.issuedquantity}} </td>
@@ -90,7 +90,7 @@
                     </table>
                 </td>
                 <td>
-                    <table class="table table-bordered" >
+                    <table class="table table-bordered text-gray-800" >
                         {% for requestedchemical in requests.chemicals.all %} 
                     <tr align="center">
                         <td>{{requestedchemical.chemical.unit}}</td>
@@ -113,8 +113,8 @@
                 </td>
                 <td>
                     
-                <a  href="{% url 'requestDetal' requests.id %}" >
-                    <i class="fas fa-print fa-2x text-success"></i>
+                <a  href="#" >
+                    <i class="fas fa-print fa-2x text-info"></i>
                 </a>
                     &nbsp;
                     {% if requests.received == False %}

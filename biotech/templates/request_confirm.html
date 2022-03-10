@@ -8,17 +8,17 @@
     <div class="container-fluid">
     
         <div class="text-center">
-            <h2>Summary Of <strong class="text-success"> Requests</strong> </h2>
+            <h2>Summary Of <strong class="text-info"> Requests</strong> </h2>
             
           </div>
     
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-success">Requests</h6>
+            <h6 class="m-0 font-weight-bold text-info">Requests</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered text-gray-800" id="dataTable" width="100%" cellspacing="0">
                     <thead align="center">
                 <tr>
                     <th>NO </th>
@@ -44,7 +44,7 @@
                 </tr>
                 <tr>
                     <td colspan="5">
-                    <a class='btn btn-sutext-success float-right' href="{% url 'chemicalList' %}">Select and add Chemicals</a>
+                    <a class='btn btn-sutext-info float-right' href="{% url 'chemicalList' %}">Select and add Chemicals</a>
                     </td>
                 </tr>
                 {% endfor %}
@@ -53,8 +53,8 @@
         </div>
         
             {% if object is not empty %}
-            <a class='btn btn-danger center ml-3' href="">Cancel</a>
-            <a class='btn btn-success  ml-3' href="{% url 'finishRequest' %}">Requeest</a>
+            <a class="btn btn-danger float-right  ml-3" href="/">Cancel</a>
+            <a class="btn btn-success float-right ml-3" href="{% url 'finishRequest' %}">Request</a>
             
             {%else%}
             <a class='btn btn-danger float-right' href='/'>Cancel</a>

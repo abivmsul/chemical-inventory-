@@ -9,27 +9,27 @@
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
           <h1 class="h3 mb-0 text-gray-800"></h1>
           {% include 'partials/_alerts.html' %}
-          <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i
-                  class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+          <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm"><i
+                  class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
       </div>
 
       <section class="hero">
         <div class="container mb-5">
           <div class="row align-items-center">
             <div class="col-lg-6">
-              <h1 class="hero-heading mb-0">Welcome to  <br> <strong class="text-success">National Agricultural Biotechnology Research center</strong></h1>
+              <h1 class="hero-heading mb-0"><strong class="text-info">National Agricultural Biotechnology Research center</strong></h1>
               <div class="row">
                 <div class="col-lg-10">
                   <p class="lead text-muted mt-4 mb-4"></p>
                 </div>
               </div>
             
-                <div class="form-group">
-                  <a href="#" data-toggle="modal" data-target="#add" ><button type="submit" class="btn btn-success">Add New Chemical</button></a>
+                <!-- <div class="form-group">
+                  <a href="#" data-toggle="modal" data-target="#add" ><button type="submit" class="btn btn-info">Add New Chemical</button></a>
                 </div>
                 <div class="form-group">
-                    <a href="{% url 'chemicalList' %}"><button type="submit" class="btn btn-success">Order New Chemicals</button></a>
-                  </div>
+                    <a href="{% url 'chemicalList' %}"><button type="submit" class="btn btn-info">Order New Chemicals</button></a>
+                  </div> -->
                 
             </div>
             <div class="col-lg-6"><img src="{% static 'img/eiar.jpg'%}" alt="..." class="hero-image img-fluid d-none d-lg-block"></div>
@@ -42,101 +42,57 @@
       <div class="row">
 
           <!-- Request Chemical -->
-          <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
+          <div class="col-xl-6 col-md-6 mb-4">
+              <div class="card border-left-info shadow h-100 py-2">
                   <div class="card-body">
                       <div class="row no-gutters align-items-center">
                           <div class="col mr-2">
                              
                               <div class="row no-gutters align-items-center">
                                   <div class="col-auto">
-                                      <div class="h3 mb-0 mr-3 font-weight-bold text-gray-800">Requested Chemicals</div>
-                                  </div>
-                                  
-                              </div>
-                          </div>
-                          <div class="col-auto">
-                              <a  href="{% url 'chemicalList' %}">
-                                  <i class="fas fa-tachometer-alt fa-4x text-success"></i>  
-                              </a>
-                              <!-- <a href="out_order_detail.html"><i class="fas fa-sign-out-alt fa-4x text-success"></i></a> -->
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-
-             <!-- Pending Orders -->
-             <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-secondary shadow h-100 py-2">
-                  <div class="card-body">
-                      <div class="row no-gutters align-items-center">
-                          <div class="col mr-2">
-                             
-                              <div class="row no-gutters align-items-center">
-                                  <div class="col-auto">
-                                      <div class="h3 mb-0 mr-3 font-weight-bold text-gray-800">Pendign Orders</div>
+                                      
+                                      <div class="h3 mb-0 mr-3 font-weight-bold text-gray-800"> <i class="fas fa-clipboard-list fa-2x text-info"></i> Total Chemicals</div>
                                   </div>
                                   
                               </div>
                           </div>
                           <div class="col-auto">
                               <a  href="#">
-                                 
-                                  <i class="fas  fa-3x text-secondary">{{ pendingOrder }}</i> 
-                                 
+                                {% if request.user.department.department == 'Animal Biotechnology' %}
+                                  <i class="fas  fa-3x text-info">{{ animalChemicals }}</i> 
+                                 {% elif request.user.department.department == 'Plant Biotechnology' %}
+                                 <i class="fas  fa-3x text-info">{{ plantChemicals }}</i> 
+                                 {% elif request.user.department.department == 'Microbial Biotechnology' %}
+                                 <i class="fas  fa-3x text-info">{{ microbialChemicals }}</i> 
+                                 {%endif%}
+                                  <!-- <i class="fas fa-tachometer-alt fa-4x text-info"></i>   -->
                               </a>
-                              <!-- <a href="out_order_detail.html"><i class="fas fa-sign-out-alt fa-4x text-success"></i></a> -->
+                              <!-- <a href="out_order_detail.html"><i class="fas fa-sign-out-alt fa-4x text-info"></i></a> -->
                           </div>
                       </div>
                   </div>
               </div>
           </div>
-      
-          <!-- Accepted Orders -->
-          <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-warning shadow h-100 py-2">
-                  <div class="card-body">
-                      <div class="row no-gutters align-items-center">
-                          <div class="col mr-2">
-                             
-                              <div class="row no-gutters align-items-center">
-                                  <div class="col-auto">
-                                      <div class="h3 mb-0 mr-3 font-weight-bold text-gray-800">Accepted Orders</div>
-                                  </div>
-                                  
-                              </div>
-                          </div>
-                          <div class="col-auto">
-                              <a  href="#" >
-                                  <i class="fas  fa-3x text-warning">{{ acceptedOrder }}</i>  
-                              </a>
-                              <!-- <a href="out_order_detail.html"><i class="fas fa-sign-out-alt fa-4x text-success"></i></a> -->
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-
+          
             <!-- Confirmed Orders -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
+            <div class="col-xl-6 col-md-6 mb-4">
+              <div class="card border-left-info shadow h-100 py-2">
                   <div class="card-body">
                       <div class="row no-gutters align-items-center">
                           <div class="col mr-2">
                              
                               <div class="row no-gutters align-items-center">
                                   <div class="col-auto">
-                                      <div class="h3 mb-0 mr-2 font-weight-bold text-gray-800">Completed Order</div>
+                                      <div class="h3 mb-0 mr-2 font-weight-bold text-gray-800"><i class="fas fa-user fa-2x text-info"></i> Total Researchers</div>
                                   </div>
                                   
                               </div>
                           </div>
                           <div class="col-auto">
                               <a  href="#">
-                                  <i class="fas  fa-3x text-success">{{ completedOrder }}</i>  
+                                  <i class="fas  fa-3x text-info">{{ completedOrder }}</i>  
                               </a>
-                              <!-- <a href="out_order_detail.html"><i class="fas fa-sign-out-alt fa-4x text-success"></i></a> -->
+                              <!-- <a href="out_order_detail.html"><i class="fas fa-sign-out-alt fa-4x text-info"></i></a> -->
                           </div>
                       </div>
                   </div>
@@ -172,7 +128,7 @@
   <div class="container mb-5">
     <div class="row align-items-center">
       <div class="col-lg-6">
-        <h1 class="hero-heading mb-0">Welcome to  <br> <strong class="text-primary">National Agricultural Biotechnology Research center</strong></h1>
+        <h1 class="hero-heading mb-0"><strong class="text-primary">National Agricultural Biotechnology Research center</strong></h1>
         <div class="row">
           <div class="col-lg-10">
             <p class="lead text-muted mt-4 mb-4"></p>
@@ -199,7 +155,7 @@
         <section class="">
             <div class="container">
           <div class="container text-center">
-            <h1 class="hero-heading">ADD <strong class="text-success">Chemical</strong></h1>
+            <h1 class="hero-heading">ADD <strong class="text-info">Chemical</strong></h1>
            
      
         <form method="POST" action="" >
@@ -214,21 +170,21 @@
             <div class="input-group mb-3">
                 <h6>Chemical Name</h6>
                 <div class="input-group-append">
-                    <span class="input-group-text"><i class="fas fa-pen text-success"></i></span>
+                    <span class="input-group-text"><i class="fas fa-pen text-info"></i></span>
                     {{form.name}}
                 </div>
             </div>
             <div class="input-group mb-2">
                 <h6>Unit</h6>
                 <div class="input-group-append">
-                    <span class="input-group-text"><i class="fas fa-list text-success"></i></span>
+                    <span class="input-group-text"><i class="fas fa-list text-info"></i></span>
                     {{form.unit}}
                 </div>
             </div>
             <div class="input-group mb-2">
                 <h6>Company</h6>
                 <div class="input-group-append">
-                    <span class="input-group-text"><i class="fas fa-home text-success"> </i></span>
+                    <span class="input-group-text"><i class="fas fa-home text-info"> </i></span>
                     {{form.company}}
                 </div>
                 
@@ -237,13 +193,13 @@
             <div class="input-group mb-2">
                 <h6>Description</h6>
                 <div class="input-group-append">
-                    <span class="input-group-text"><i class="fas fa-clipboard-list text-success"></i></span>
+                    <span class="input-group-text"><i class="fas fa-clipboard-list text-info"></i></span>
                     {{form.description}}
                 </div>
             </div>
 
                <div class="d-flex justify-content-center mt-3 login_container">
-                 <input class="btn btn-success" type="submit" value="Add Chemical">
+                 <input class="btn btn-info" type="submit" value="Add Chemical">
                </div>
         </div>
         <br>

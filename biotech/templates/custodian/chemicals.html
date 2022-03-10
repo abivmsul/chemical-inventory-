@@ -6,17 +6,34 @@
 {% if page == 'animal' %}
 <div class="container-fluid">
     <div class="text-center">
-        <h2> <strong class="text-success"> Animal Bio-Technology</strong> Chemicals</h2>
-        
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h2> <strong class="text-info"> Animal Bio-Technology</strong> Chemicals</h2> 
+            <!-- <a href="#" class="  btn btn-sm btn-info shadow-sm"><i
+                    class="fas fa-download fa-sm text-white-50"></i> Download Report</a> -->
+
+                    <li class="nav-item">
+                        <a class=" btn btn-sm btn-info shadow-sm  collapsed " href="#" data-toggle="collapse" data-target="#report"
+                            aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-download fa-sm text-white-50"></i> Generate Report
+                        </a>
+                        <div id="report" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">report type:</h6>
+                                <a class="collapse-item btn btn-sm btn-info shadow-sm " href="{% url 'csvChemicalReport' page %}"><i class="fas fa-table fa-sm text-white-50"></i> CSV file</a>
+                                <a class="collapse-item btn btn-sm btn-info shadow-sm " href="#"><i class="fas fa-clipboard-list fa-sm text-white-50"></i> Pdf file</a>
+                            </div>
+                        </div>
+                    </li>
+        </div>
       </div>
   <!-- Page Heading -->
 
 
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-success">Chemical Lists</h6>
+        <h6 class="m-0 font-weight-bold text-info">Chemical Lists</h6>
     </div>
-    <div class="card-body" style="box-shadow:0 0 25px 0 rgb(92, 226, 121);">
+    <div class="card-body" style="box-shadow:0 0 25px 0 rgb(29, 175, 185);">
         <div class="table-responsive">
             <table class="table table-bordered text-gray-800" id="dataTable" width="100%" cellspacing="0" >
                 <thead>
@@ -74,17 +91,32 @@
  {%elif page == 'plant'%}
  <div class="container-fluid">
     <div class="text-center">
-        <h2><strong class="text-success"> Plant Bio-Technology</strong>Chemicals </h2>
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h2><strong class="text-info"> Plant Bio-Technology</strong>Chemicals </h2>
         
+        <li class="nav-item">
+            <a class=" btn btn-sm btn-info shadow-sm  collapsed " href="#" data-toggle="collapse" data-target="#report"
+                aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-download fa-sm text-white-50"></i> Generate Report
+            </a>
+            <div id="report" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">report type:</h6>
+                    <a class="collapse-item btn btn-sm btn-info shadow-sm " href="{% url 'csvChemicalReport' page %}"><i class="fas fa-table fa-sm text-white-50"></i> CSV file</a>
+                    <a class="collapse-item btn btn-sm btn-info shadow-sm " href="#"><i class="fas fa-clipboard-list fa-sm text-white-50"></i> Pdf file</a>
+                </div>
+            </div>
+        </li>
+    </div>
       </div>
   <!-- Page Heading -->
 
 
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-success">chemicals</h6>
+        <h6 class="m-0 font-weight-bold text-info">chemicals</h6>
     </div>
-    <div class="card-body" style="box-shadow:0 0 25px 0 rgb(92, 226, 121);">
+    <div class="card-body" style="box-shadow:0 0 25px 0 rgb(29, 175, 185);">
         <div class="table-responsive">
             <table class="table table-bordered text-gray-800" id="dataTable" width="100%" cellspacing="0">
                 <thead>
@@ -142,17 +174,32 @@
 {%elif page == 'microbial'%}
 <div class="container-fluid">
     <div class="text-center">
-        <h2><strong class="text-success"> Microbial Bio-Technology</strong> Chemicals </h2>
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h2><strong class="text-info"> Microbial Bio-Technology</strong> Chemicals </h2>
         
+        <li class="nav-item">
+            <a class=" btn btn-sm btn-info shadow-sm  collapsed " href="#" data-toggle="collapse" data-target="#report"
+                aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-download fa-sm text-white-50"></i> Generate Report
+            </a>
+            <div id="report" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">report type:</h6>
+                    <a class="collapse-item btn btn-sm btn-info shadow-sm " href="{% url 'csvChemicalReport' page %}"><i class="fas fa-table fa-sm text-white-50"></i> CSV file</a>
+                    <a class="collapse-item btn btn-sm btn-info shadow-sm " href="#"><i class="fas fa-clipboard-list fa-sm text-white-50"></i> Pdf file</a>
+                </div>
+            </div>
+        </li>
+</div>
       </div>
   <!-- Page Heading -->
 
 
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-success">chemicals</h6>
+        <h6 class="m-0 font-weight-bold text-info">chemicals</h6>
     </div>
-    <div class="card-body" style="box-shadow:0 0 25px 0 rgb(92, 226, 121);">
+    <div class="card-body" style="box-shadow:0 0 25px 0 rgb(29, 175, 185);">
         <div class="table-responsive">
             <table class="table table-bordered text-gray-800" id="dataTable" width="100%" cellspacing="0">
                 <thead>

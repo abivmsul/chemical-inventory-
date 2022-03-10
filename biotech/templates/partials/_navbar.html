@@ -13,23 +13,50 @@
 
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">
+        {% if request.user.groups.all.0.name == 'Department' %} 
+        <li class="nav-item">
+            <br>
+        <form method="GET" action="{% url 'chemicalList' %}" class="subscription-form">
+            <div class="form-group">
+                <input type="text" name="q" placeholder=" Search Chemical...">
+            </div>
+          </form>
+        </li>
+        {%endif%}
 
-  
-
+        {% if request.user.groups.all.0.name == 'Researcher' %} 
+        <li class="nav-item">
+            <br>
+            {% if request.user.researcher.department == 'Animal Biotechnology' %}
+        <form method="GET" action="{% url 'animalchemicalList' %}" class="subscription-form">
+            {% elif request.user.researcher.department == 'Plant Biotechnology' %}
+        <form method="GET" action="{% url 'plantchemicalList' %}" class="subscription-form">
+            {% elif request.user.researcher.department == 'Microbial Biotechnology' %}
+        <form method="GET" action="{% url ' microbialchemicalList' %}" class="subscription-form">
+            {%endif%}
+            <div class="form-group">
+                <input type="text" class="" name="q" placeholder=" Search Chemical..." required>
+                <button type="submit" class="btn btn-info">
+                    <i class="fas fa-search fa-1x icon-white"></i>
+                  </button>
+            </div>
+          </form>
+        </li>
+        {%endif%}
         <div class="topbar-divider d-none d-sm-block"></div>
         
         {% if request.user.groups.all.0.name == 'Researcher' and request.user|cart_item_count > 0 %}
-        <li class="nav-item"> <a href="{% url 'requestSummary' %}" class="nav-link"><span class="mr-2 d-none d-lg-inline text-gray-600 "> {{ request.user|cart_item_count }}&nbsp;<i class="fas fa-list text-success">&nbsp;</i></span><span class="mr-2 d-none d-lg-inline text-gray-600 small"> Chemicals in the List </span></a></li>
+        <li class="nav-item"> <a href="{% url 'requestSummary' %}" class="nav-link"><span class="mr-2 d-none d-lg-inline text-gray-600 "> {{ request.user|cart_item_count }}&nbsp;<i class="fas fa-list text-info">&nbsp;</i></span><span class="mr-2 d-none d-lg-inline text-gray-600 small"> Chemicals in the List </span></a></li>
         
         {% elif request.user.groups.all.0.name == 'Department' and request.user|cart_item_count > 0 %}
-        <li class="nav-item"> <a href="{% url 'requestSummary' %}" class="nav-link"><span class="mr-2 d-none d-lg-inline text-gray-600 "> {{ request.user|cart_item_count }}&nbsp;<i class="fas fa-list text-success">&nbsp;</i></span><span class="mr-2 d-none d-lg-inline text-gray-600 small"> Chemicals in the List </span></a></li>
+        <li class="nav-item"> <a href="{% url 'requestSummary' %}" class="nav-link"><span class="mr-2 d-none d-lg-inline text-gray-600 "> {{ request.user|cart_item_count }}&nbsp;<i class="fas fa-list text-info">&nbsp;</i></span><span class="mr-2 d-none d-lg-inline text-gray-600 small"> Chemicals in the List </span></a></li>
         {%endif%}
         <!-- Nav Item - User Information -->
           
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-success small">{{user}}</span>
+                <span class="mr-2 d-none d-lg-inline text-info small">{{user}}</span>
                 <img class="img-profile rounded-circle"
                     src="{% static 'img/undraw_profile.svg' %}">
             </a>
@@ -57,7 +84,7 @@
 <div class="modal fade bd-example-modal-lg" id="addproduct" tabindex="-1" role="dialog" aria-labelledby="detail"
    aria-hidden="true">
    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-       <div class="modal-content" style="box-shadow:0 0 25px 0 rgb(12, 194, 51);">
+       <div class="modal-content" style="box-shadow:0 0 25px 0 rgb(29, 175, 185);">
            <div class="modal-header border-bottom-0">
               
                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
@@ -67,7 +94,7 @@
               <div class="modal-body border-bottom-0">
               
                      <div class="col-md-10 mx-auto">
-                                <div class="card" style="box-shadow:0 0 25px 0 rgb(12, 194, 51);">
+                                <div class="card" style="box-shadow:0 0 25px 0 rgb(29, 175, 185);">
                                   <div class="card-header">
                                        <h4>Print</h4>
                                   </div>

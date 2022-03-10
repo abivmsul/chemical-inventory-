@@ -3,7 +3,7 @@
 
   {% if request.user.groups.all.0.name == 'Researcher' %}
      <!-- Sidebar Researcher -->
- <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
+ <ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'researcherhome' %}">
@@ -58,7 +58,7 @@
        <hr class="sidebar-divider">
  
     <!-- Nav Item - Pages Collapse Menu -->
-    <div class="sidebar-heading">
+    <!-- <div class="sidebar-heading">
      other
  </div>
  <li class="nav-item">
@@ -81,7 +81,7 @@
             </div>
         </div>
     </li>
- 
+  -->
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
  
@@ -94,7 +94,7 @@
  <!-- End of Sidebar -->
   {% elif request.user.groups.all.0.name == 'Custodian' %}
       <!-- Sidebar custodian -->
-      <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
+      <ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion" id="accordionSidebar">
  
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'custodianhome' %}">
@@ -168,7 +168,7 @@
            <hr class="sidebar-divider">
      
         <!-- Nav Item - Pages Collapse Menu -->
-        <div class="sidebar-heading">
+        <!-- <div class="sidebar-heading">
          other
      </div>
      <li class="nav-item">
@@ -176,7 +176,7 @@
              <i class="fas fa-fw fa-table"></i>
              <span>le lela neger</span></a>
      </li>
-     
+      -->
      
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
@@ -191,7 +191,7 @@
       
 {% elif request.user.groups.all.0.name == 'Department' %}
      <!-- Sidebar Department -->
-     <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
+     <ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion" id="accordionSidebar">
 
        <!-- Sidebar - Brand -->
        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'departmenthome' %}">
@@ -263,13 +263,13 @@
        <li class="nav-item">
         <a class="nav-link" href="{% url 'animalrequestsofdpartment' %}">
             <i class="fas fa-fw fa-clipboard-list"></i>
-            <span>Chemical Requests</span></a>
+            <span>Researcher Requests</span></a>
           </li>
         {% elif request.user.department.department == 'Plant Biotechnology' %}
          <li class="nav-item">
         <a class="nav-link" href="{% url 'plantrequestsofdpartment' %}">
             <i class="fas fa-fw fa-clipboard-list"></i>
-            <span>Chemical Requests</span></a>
+            <span>Researcher Requests</span></a>
          </li>
          {% elif request.user.department.department == 'Microbial Biotechnology' %}
          <li class="nav-item">
@@ -298,12 +298,12 @@
             <i class="fas fa-fw fa-table"></i>
             <span>My Requests</span></a>
     </li>
-    <li class="nav-item">
+    <!-- <li class="nav-item">
         <a class="nav-link" href="">
             <i class="fas fa-fw fa-table"></i>
             <span>le lela neger</span></a>
     </li>
-    
+     -->
     
        <!-- Divider -->
        <hr class="sidebar-divider d-none d-md-block">
@@ -321,7 +321,7 @@
      <div class="modal fade bd-example-modal-lg" id="res" tabindex="-1" role="dialog" aria-labelledby="detail"
      aria-hidden="true">
      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-         <div class="modal-content" style="box-shadow:0 0 25px 0 rgb(12, 194, 51);">
+         <div class="modal-content" style="box-shadow:0 0 25px 0 rgb(29, 175, 185);">
              <div class="modal-header border-bottom-0">
                  <h5 class="title" id="detail">Researcher</h5>
                  <button class="close" type="button" data-dismiss="modal" aria-label="Close">
@@ -331,7 +331,7 @@
                 <div class="modal-body border-bottom-0">
                 
                        <div class="col-md-10 mx-auto">
-                                  <div class="card" style="box-shadow:0 0 25px 0 rgb(12, 194, 51);">
+                                  <div class="card" style="box-shadow:0 0 25px 0 rgb(29, 175, 185);">
                                     <div class="card-header">
                                          <h4>Add Researcher User</h4>
                                     </div>
@@ -357,7 +357,7 @@
                     
                                                <div class="d-flex justify-content-center mt-3 login_container">
                                                 <input type="hidden" name="next" value="{{ request.path }}">
-                                                 <input class="btn btn-success" name="res" type="submit" value="Create Account">
+                                                 <input class="btn btn-info" name="res" type="submit" value="Create Account">
                                                </div>
                     
                                         </form>
@@ -375,7 +375,7 @@
 {% elif request.user.groups.all.0.name == 'Director' %}
 
       <!-- Sidebar Department -->
-      <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
+      <ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'directorhome' %}">
@@ -487,24 +487,22 @@
            <hr class="sidebar-divider">
      
         <!-- Nav Item - Pages Collapse Menu -->
-        <div class="sidebar-heading">
+        <!-- <div class="sidebar-heading">
          other
-     </div>
+     </div> -->
      <!-- <li class="nav-item">
          <a class="nav-link" href="{% url 'myRequest' %}">
              <i class="fas fa-fw fa-table"></i>
              <span>My Requests</span></a>
      </li> -->
-     <li class="nav-item">
+     <!-- <li class="nav-item">
          <a class="nav-link" href="">
              <i class="fas fa-fw fa-table"></i>
              <span>le lela neger</span></a>
      </li>
+      -->
      
-     
-        <!-- Divider -->
-        <hr class="sidebar-divider d-none d-md-block">
-     
+        
         <!-- Sidebar Toggler (Sidebar) -->
         <div class="text-center d-none d-md-inline">
             <button class="rounded-circle border-0" id="sidebarToggle"></button>
