@@ -3,7 +3,7 @@
 {% block content %}
  <!-- Begin Page Content -->
  <div class="container-fluid " >
-
+  {% include 'partials/_alerts.html' %}
   <!-- Page Heading -->
   <div class="d-sm-flex align-items-center justify-content-between mb-auto">
       <h2>Details of  <strong class="text-info">{{chemical.name}}</strong> </h2>
@@ -18,7 +18,7 @@
       <div class="row">
           
       <div class="col-auto col-md-auto mb-4 align-items-center">
-          <div class="card border-left-info shadow h-100 py-auto " >
+        <center>
               <div class="card-body align-items-center">
                   <div class="row no-gutters align-items-center">
                       <div class="col mr-2">
@@ -43,10 +43,10 @@
                               <td>{{chemical.name}}</td>
                               <td>{{chemical.company}}</td>
                               <td>{{chemical.unit}}</td>
-                              <td>{{chemical.description}}</td>  
+                              <td>For more detail information about the chemical , please click <strong> <a href="{{chemical.description}}">Here</a> </strong>.</a></td>  
                               <td> <form action="{% url 'addQuantity' chemical.id %}" method="post" enctype='multipart/form-data' validate>
                                 {% csrf_token %}
-                           
+                                <input type="hidden" name="next" value="{{ request.path }}">
                                 <input type="number" name="quantity" placeholder="  - quantity" required >
                              </td>
                               </tr>
@@ -69,7 +69,7 @@
                       
                   </div>
               </div>
-          </div>
+            </center>
       </div>
      
       

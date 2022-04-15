@@ -23,6 +23,10 @@ def login(request):
                 return redirect('researcherhome')
             elif request.user.groups.filter(name='Custodian').exists():
                 return redirect('custodianhome')
+            elif request.user.groups.filter(name='Department').exists():
+                return redirect('departmenthome')
+            elif request.user.groups.filter(name='Director').exists():
+                return redirect('directorhome')
             else:
                 messages.warning(request, 'Invalid credentials')
                 return redirect('login')
@@ -117,6 +121,7 @@ def addUser(request):
             group = Group.objects.get(name = 'Researcher')
             user.groups.add(group)
             Researcher.objects.create( researcher = user , name = user.username, department = request.user.department.department)
+            
             messages.success(request, 'Account was created for ' + username)
             send_mail(
                 'Login details',
@@ -161,7 +166,115 @@ def logout(request):
     messages.success(request, 'You are now logged out')
     return render(request, 'login.html')
 
+def animalResearcher(request):
+    page = 'animal'
+    animalResearcher = Researcher.objects.filter(department = 'Animal Biotechnology')
 
+    context = { 'page': page , 'animalResearcher': animalResearcher}
+    return render(request, 'department/researchers.html',context )
+
+def plantResearcher(request):
+    page = 'plant'
+    plantResearcher = Researcher.objects.filter(department = 'Plant Biotechnology')
+
+    context = { 'page': page , 'plantResearcher': plantResearcher}
+    return render(request, 'department/researchers.html',context )
+
+def microbialResearcher(request):
+    page = 'microbial'
+    microbialResearcher = Researcher.objects.filter(department = 'Microbial Biotechnology')
+
+    context = { 'page': page , 'microbialResearcher': microbialResearcher}
+    return render(request, 'department/researchers.html',context )
+
+def programCoordinator(request):
+    dform = DeptForm()
+    departments = Department.objects.all()
+    print(departments)
+    context = { 'department':departments,'dform':dform }
+    return render(request, 'director/program_coordinators.html', context)
+
+def programCoordinatorDetail(request,pk):
+    programCoordinator = Department.objects.get(id = pk)
+
+    context = {'programCoordinator': programCoordinator}
+    return render(request, 'director/program_coordinator_detail.html',context )
+
+def researcherDetail(request,pk):
+    researcher = Researcher.objects.get(id = pk)
+
+    context = {'researcher': researcher}
+    return render(request, 'department/researcher_detail.html',context )
+
+def custodian(request):
+    custodian = Custodian.objects.all()
+    # print(departments)
+    context = { 'custodians':custodian }
+    return render(request, 'director/custodians.html', context)
+
+def custodianDetail(request,pk):
+    custodian =Custodian.objects.get(id = pk)
+
+    context = {'custodian': custodian}
+    return render(request, 'director/custodian_detail.html',context )
+
+
+def give(request,pk):
+    researcher = Researcher.objects.get(id = pk)
+    researcher.permission = True
+    researcher.save()
+    next = request.GET.get('next', '/')
+    return redirect(next)
+
+def revoke(request,pk):
+    researcher = Researcher.objects.get(id = pk)
+    researcher.permission = False
+    researcher.save()
+    next = request.GET.get('next', '/')
+    return redirect(next)
+    
+def disableresearcher(request,pk):
+    researcher = Researcher.objects.get(id = pk)
+    researcher.researcher.is_active = False
+    researcher.researcher.save()
+    next = request.GET.get('next', '/')
+    return redirect(next)
+
+def disabledepartment(request,pk):
+    pLeader = Department.objects.get(id = pk)
+    pLeader.departments.is_active = False
+    pLeader.departments.save()
+    next = request.GET.get('next', '/')
+    return redirect(next)
+   
+def disablecustodian(request,pk):
+    custodian = Custodian.objects.get(id = pk)
+    custodian.custodian.is_active = False
+    custodian.custodian.save()
+    next = request.GET.get('next', '/')
+    return redirect(next)
+   
+
+def enableresearcher(request,pk):
+    researcher = Researcher.objects.get(id = pk)
+    researcher.researcher.is_active = True
+    researcher.researcher.save()
+    next = request.GET.get('next', '/')
+    return redirect(next)
+
+def enabledepartment(request,pk):
+    pLeader = Department.objects.get(id = pk)
+    pLeader.departments.is_active = True
+    pLeader.departments.save()
+    next = request.GET.get('next', '/')
+    return redirect(next)
+        
+def enablecustodian(request,pk):
+    custodian = Custodian.objects.get(id = pk)
+    custodian.custodian.is_active = True
+    custodian.custodian.save()
+    next = request.GET.get('next', '/')
+    return redirect(next)
 
 
 

@@ -16,15 +16,17 @@
       <section class="hero">
         <div class="container mb-5">
           <div class="row align-items-center">
-            <div class="col-lg-6">
-              <h1 class="hero-heading mb-0"> welcome Director to <br> <strong class="text-info">National Agricultural Biotechnology Research center</strong></h1>
+         <div class="col-lg-6">
+              <h1 class="hero-heading mb-0"><strong class="text-info">National Agricultural Biotechnology Research center</strong></h1>
               <div class="row">
                 <div class="col-lg-10">
                   <p class="lead text-muted mt-4 mb-4"></p>
                 </div>
               </div>
+            
             </div>
-            <div class="col-lg-6"><img src="{% static 'img/eiar.jpg'%}" alt="..." class="hero-image img-fluid d-none d-lg-block"></div>
+            <div class="col-lg-6"><img src="{% static 'img/boss.svg'%}" alt="..." class="img-fluid px-3 px-sm-4 mt-3 mb-4"></div>
+           
           </div>
         </div>
       </section>
@@ -33,219 +35,446 @@
       <!-- Content Row -->
       <div class="row">
 
-          <!-- Request Chemical -->
-          <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-info shadow h-100 py-2">
-                  <div class="card-body">
-                      <div class="row no-gutters align-items-center">
-                          <div class="col mr-2">
-                             
-                              <div class="row no-gutters align-items-center">
-                                  <div class="col-auto">
-                                      <div class="h3 mb-0 mr-3 font-weight-bold text-gray-800">Requested Chemicals</div>
-                                  </div>
-                                  
-                              </div>
-                          </div>
-                          <div class="col-auto">
-                              <a  href="{% url 'chemicalList' %}">
-                                  <i class="fas fa-tachometer-alt fa-4x text-info"></i>  
-                              </a>
-                              <!-- <a href="out_order_detail.html"><i class="fas fa-sign-out-alt fa-4x text-success"></i></a> -->
-                          </div>
+
+        <!-- Animal researchers -->
+        <div class="col-xl-4 col-md-4 mb-4">
+          <div class="card border-left-info shadow h-100 py-2">
+              <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                          <div class="text-s font-weight-bold text-info text-gray-800 mb-1">
+                            Active Researchers of Animal Bio-Technology Department</div>
+                          <div class="h5 mb-0 font-weight-bold text-info">{{animalResearcher}}</div>
+                      </div>
+                      <div class="col-auto">
+                          <i class="fas fa-user fa-2x text-info"></i>
                       </div>
                   </div>
               </div>
           </div>
+      </div>
 
-             <!-- Pending Orders -->
-             <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-secondary shadow h-100 py-2">
-                  <div class="card-body">
-                      <div class="row no-gutters align-items-center">
-                          <div class="col mr-2">
-                             
-                              <div class="row no-gutters align-items-center">
-                                  <div class="col-auto">
-                                      <div class="h3 mb-0 mr-3 font-weight-bold text-gray-800">Pendign Orders</div>
-                                  </div>
-                                  
-                              </div>
-                          </div>
-                          <div class="col-auto">
-                              <a  href="#">
-                                 
-                                  <i class="fas  fa-3x text-secondary">{{ pendingOrder }}</i> 
-                                 
-                              </a>
-                              <!-- <a href="out_order_detail.html"><i class="fas fa-sign-out-alt fa-4x text-success"></i></a> -->
-                          </div>
+
+
+ <!-- Microbial researchers -->
+        <div class="col-xl-4 col-md-4 mb-4">
+          <div class="card border-left-info shadow h-100 py-2">
+              <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                          <div class="text-s font-weight-bold text-info text-gray-800 mb-1">
+                            Active Researchers of Microbial Bio-Technology Department</div>
+                          <div class="h5 mb-0 font-weight-bold text-info">{{microbialResearcher}}</div>
+                      </div>
+                      <div class="col-auto">
+                          <i class="fas fa-user fa-2x text-info"></i>
                       </div>
                   </div>
               </div>
           </div>
-      
-          <!-- Accepted Orders -->
-          <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-warning shadow h-100 py-2">
-                  <div class="card-body">
-                      <div class="row no-gutters align-items-center">
-                          <div class="col mr-2">
-                             
-                              <div class="row no-gutters align-items-center">
-                                  <div class="col-auto">
-                                      <div class="h3 mb-0 mr-3 font-weight-bold text-gray-800">Accepted Orders</div>
-                                  </div>
-                                  
-                              </div>
-                          </div>
-                          <div class="col-auto">
-                              <a  href="#" >
-                                  <i class="fas  fa-3x text-warning">{{ acceptedOrder }}</i>  
-                              </a>
-                              <!-- <a href="out_order_detail.html"><i class="fas fa-sign-out-alt fa-4x text-success"></i></a> -->
-                          </div>
+      </div>
+
+<!-- Plant researchers -->
+        <div class="col-xl-4 col-md-4 mb-4">
+          <div class="card border-left-info shadow h-100 py-2">
+              <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                          <div class="text-s font-weight-bold text-info text-gray-800 mb-1">
+                            Active Researchers of Plant Bio-Technology Department</div>
+                          <div class="h5 mb-0 font-weight-bold text-info">{{plantResearcher}}</div>
+                      </div>
+                      <div class="col-auto">
+                          <i class="fas fa-user fa-2x text-info"></i>
                       </div>
                   </div>
               </div>
           </div>
-
-            <!-- Confirmed Orders -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                  <div class="card-body">
-                      <div class="row no-gutters align-items-center">
-                          <div class="col mr-2">
-                             
-                              <div class="row no-gutters align-items-center">
-                                  <div class="col-auto">
-                                      <div class="h3 mb-0 mr-2 font-weight-bold text-gray-800">Completed Order</div>
-                                  </div>
-                                  
-                              </div>
-                          </div>
-                          <div class="col-auto">
-                              <a  href="#">
-                                  <i class="fas  fa-3x text-success">{{ completedOrder }}</i>  
-                              </a>
-                              <!-- <a href="out_order_detail.html"><i class="fas fa-sign-out-alt fa-4x text-success"></i></a> -->
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-
-
-       
-       
+      </div>
       </div>
     
+    <!-- Content Row -->
+    <div class="row">
+
+      <!-- available Column -->
+      <div class="col-lg-4 mb-4">
+
+          <!-- Project Card Example -->
+          <div class="card shadow mb-4">
+              <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-success"><i class="fas fa-check-circle fa-2x text-success"></i>  Available Chemicals</h6>
+              </div>
+              
+              <div class="card-body">
+                <div class="text-center">
+                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
+                        src="{% static 'img/list.svg' %}" alt="...">
+                </div>
+                <p>Click the title of the  lists to collaps and uncollaps it.</p>
+               <!-- Collapsable Card Example -->
+                  <div class="card shadow mb-4">
+                    <!-- Card Header - Accordion -->
+                    <a href="#animal" class="d-block card-header py-3" data-toggle="collapse"
+                      role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                      <div class="row">
+                        <div class="col-9">
+                            <h6 class="m-0 font-weight-bold text-info"><i class="fas fa-list fa-1x text-success"></i> Animal Biotechnology Chemicals </h6>
+                        </div>
+                      <div class="col-2">
+                        <h4 align="right" class="fas fa-1x text-info" >{{Aavailable}}</h4>
+                    </div>
+                    </div>
+                    </a>
+                  
+                  <!-- Card Content - Collapse -->
+                  <div class="collapse show" id="animal">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-lg-6"><img src="{% static 'img/microresearcher.svg'%}" alt="..." class="img-fluid px-3 px-sm-4 mt-3 mb-4"></div>
+                         <div class="col-lg-auto mb-4">
+                                 <a href="#"  class="btn btn-info"><i class="fas fa-minus-circle fa-1x text-white"></i> View Lists </a> &nbsp;&nbsp;&nbsp;
+                        </div>
+                        </div>
+                          <!-- <div class="progress mb-4">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 100%"
+                                aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div> -->
+                      </div>
+                  </div>
+              </div>
+
+                <!-- Collapsable Card Example -->
+                <div class="card shadow mb-4">
+                    <!-- Card Header - Accordion -->
+                    <a href="#plant" class="d-block card-header py-3" data-toggle="collapse"
+                    role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                    <div class="row">
+                        <div class="col-9">
+                            <h6 class="m-0 font-weight-bold text-info"><i class="fas fa-list fa-1x text-success"></i> Plant Biotechnology Chemicals </h6>
+                        </div>
+                    <div class="col-2">
+                        <h4 align="right" class="fas fa-1x text-info" >{{Pavailable}}</h4>
+                    </div>
+                    </div>
+                    </a>
+                
+                <!-- Card Content - Collapse -->
+                <div class="collapse show" id="plant">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-lg-6"><img src="{% static 'img/plant.svg'%}" alt="..." class="img-fluid px-3 px-sm-4 mt-3 mb-4"></div>
+                       <div class="col-lg-auto mb-4">
+                               <a href="#"  class="btn btn-info"><i class="fas fa-minus-circle fa-1x text-white"></i> View Lists </a> &nbsp;&nbsp;&nbsp;
+                      </div>
+                      </div>
+                        <!-- <div class="progress mb-4">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 100%"
+                                aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div> -->
+                        
+                    </div>
+                </div>
+            </div>
+
+            
+                <!-- Collapsable Card Example -->
+                <div class="card shadow mb-4">
+                    <!-- Card Header - Accordion -->
+                    <a href="#microbial" class="d-block card-header py-3" data-toggle="collapse"
+                    role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                    <div class="row">
+                        <div class="col-9">
+                            <h6 class="m-0 font-weight-bold text-info"><i class="fas fa-list fa-1x text-success"></i> Microbial Biotechnology Chemicals </h6>
+                        </div>
+                    <div class="col-2">
+                        <h4 align="right" class="fas fa-1x text-info" >{{Mavailable}}</h4>
+                    </div>
+                    </div>
+                    </a>
+                
+                <!-- Card Content - Collapse -->
+                <div class="collapse show" id="microbial">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-lg-6"><img src="{% static 'img/micro.svg'%}" alt="..." class="img-fluid px-3 px-sm-4 mt-3 mb-4"></div>
+                       <div class="col-lg-auto mb-4">
+                               <a href="#"  class="btn btn-info"><i class="fas fa-minus-circle fa-1x text-white"></i> View Lists </a> &nbsp;&nbsp;&nbsp;
+                      </div>
+                      </div>
+                        <!-- <div class="progress mb-4">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 100%"
+                                aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+
+              </div>
+          </div>
+
+
+      </div>
+
+       <!-- Desposable chemicals -->
+
+      <div class="col-lg-4 mb-4">
+
+          <!-- Illustrations -->
+          <div class="card shadow mb-4">
+              <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-warning"><i class="fas fa-minus-circle fa-2x text-warning"></i> Desposable Chemicals</h6>
+              </div>
+              <div class="card-body">
+                  <div class="text-center">
+                      <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
+                          src="{% static 'img/expired.svg' %}" alt="...">
+                  </div>
+
+                  <p>Click the title of the  lists to collaps and uncollaps it.</p>
+                  <!-- Collapsable Card Example -->
+                  <div class="card shadow mb-4">
+                    <!-- Card Header - Accordion -->
+                    <a href="#animal" class="d-block card-header py-3" data-toggle="collapse"
+                      role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                      <div class="row">
+                        <div class="col-9">
+                            <h6 class="m-0 font-weight-bold text-gray-800"><i class="fas fa-minus-circle fa-1x text-warning"></i> Animal Biotechnology Chemicals </h6>
+                        </div>
+                      <div class="col-2">
+                        <h4 align="right" class="fas fa-1x text-warning" >{{Aexpired}}</h4>
+                    </div>
+                    </div>
+                    </a>
+                  
+                  <!-- Card Content - Collapse -->
+                  <div class="collapse show" id="animal">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-lg-6"><img src="{% static 'img/microresearcher.svg'%}" alt="..." class="img-fluid px-3 px-sm-4 mt-3 mb-4"></div>
+                         <div class="col-lg-auto mb-4">
+                                 <a href="{% url 'aExpired' %}"  class="btn btn-info"><i class="fas fa-minus-circle fa-1x text-white"></i> View Lists </a> &nbsp;&nbsp;&nbsp;
+                        </div>
+                        </div>
+                          <!-- <div class="progress mb-4">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style="width: 100%"
+                                aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>            -->
+                      </div>
+                  </div>
+              </div>
+
+
+               <!-- Collapsable Card Example -->
+               <div class="card shadow mb-4">
+                <!-- Card Header - Accordion -->
+                <a href="#plant" class="d-block card-header py-3" data-toggle="collapse"
+                  role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                  <div class="row">
+                    <div class="col-9">
+                        <h6 class="m-0 font-weight-bold text-gray-800"><i class="fas fa-minus-circle fa-1x text-warning"></i> Plant Biotechnology Chemicals </h6>
+                    </div>
+                  <div class="col-2">
+                    <h4 align="right" class="fas fa-1x text-warning" >{{Pexpired}}</h4>
+                </div>
+                </div>
+                </a>
+              
+              <!-- Card Content - Collapse -->
+              <div class="collapse show" id="plant">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-lg-6"><img src="{% static 'img/plantresearcher2.svg'%}" alt="..." class="img-fluid px-3 px-sm-4 mt-3 mb-4"></div>
+                     <div class="col-lg-auto mb-4">
+                             <a href="{% url 'pExpired' %}"  class="btn btn-info"><i class="fas fa-minus-circle fa-1x text-white"></i> View Lists </a> &nbsp;&nbsp;&nbsp;
+                    </div>
+                    </div>
+                      <!-- <div class="progress mb-4">
+                        <div class="progress-bar progress progress-bar bg-info" role="progressbar" style="width: 100%"
+                            aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div> -->
+                  </div>
+              </div>
+          </div>
+
+
+           <!-- Collapsable Card Example -->
+           <div class="card shadow mb-4">
+            <!-- Card Header - Accordion -->
+            <a href="#microbial" class="d-block card-header py-3" data-toggle="collapse"
+              role="button" aria-expanded="true" aria-controls="collapseCardExample">
+              <div class="row">
+                <div class="col-9">
+                    <h6 class="m-0 font-weight-bold text-gray-800"><i class="fas fa-minus-circle fa-1x text-warning"></i> Microbial Biotechnology Chemicals </h6>
+                </div>
+              <div class="col-2">
+                <h4 align="right" class="fas fa-1x text-warning" >{{Mexpired}}</h4>
+            </div>
+            </div>
+            </a>
+          
+          <!-- Card Content - Collapse -->
+          <div class="collapse show" id="microbial">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-lg-6"><img src="{% static 'img/microresearcher.svg'%}" alt="..." class="img-fluid px-3 px-sm-4 mt-3 mb-4"></div>
+                 <div class="col-lg-auto mb-4">
+                         <a href="{% url 'mExpired' %}"  class="btn btn-info"><i class="fas fa-minus-circle fa-1x text-white"></i> View Lists </a> &nbsp;&nbsp;&nbsp;
+                </div>
+                </div>
+                  <!-- <div class="progress mb-4">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style="width: 100%"
+                        aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                </div> -->
+                
+              </div>
+          </div>
+      </div>
+
+                  <!-- <p>Add some quality, svg illustrations to your project courtesy of <a
+                          target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a
+                      constantly updated collection of beautiful svg images that you can use
+                      completely free and without attribution!</p>
+                  <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on
+                      unDraw &rarr;</a> -->
+              </div>
+          </div>
+
+      
+      </div>
+
+          <!-- desposed chemicals -->
+
+          <div class="col-lg-4 mb-4">
+
+            <!-- Illustrations -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-danger"><i class="fas fa-trash fa-2x text-danger"></i> Desposed Chemicals</h6>
+                </div>
+                <div class="card-body">
+                    <div class="text-center">
+                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
+                            src="{% static 'img/trash2.svg' %}" alt="...">
+                    </div>
+  
+                    <p>Click the title of the  lists to collaps and uncollaps it.</p>
+                    <!-- Collapsable Card Example -->
+                    <div class="card shadow mb-4">
+                      <!-- Card Header - Accordion -->
+                      <a href="#animal" class="d-block card-header py-3" data-toggle="collapse"
+                        role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                        <div class="row">
+                          <div class="col-9">
+                              <h6 class="m-0 font-weight-bold text-gray-800"><i class="fas fa-trash fa-1x text-danger"></i> Animal Biotechnology Chemicals </h6>
+                          </div>
+                        <div class="col-2">
+                          <h4 align="right" class="fas fa-1x text-info" >{{Adesposed}}</h4>
+                      </div>
+                      </div>
+                      </a>
+                    
+                    <!-- Card Content - Collapse -->
+                    <div class="collapse show" id="animal">
+                        <div class="card-body">
+                            This chemcials are <strong class="text-danger">Desposed</strong> Chemicals of Animal Biotechnology.
+                            <br><br>
+                            <!-- <h4 class="small font-weight-bold"> Desposed <span
+                              class="float-right">100%</span></h4>
+                            <div class="progress mb-4">
+                              <div class="progress-bar progress-bar progress-bar-animated bg-danger" role="progressbar" style="width: 100%"
+                                  aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div> -->
+                          <a href="#"  class="btn btn-info"><i class="fas fa-minus-circle fa-1x text-white"></i> View Lists </a> &nbsp;&nbsp;&nbsp;
+                                             
+                        </div>
+                    </div>
+                </div>
+  
+  
+                 <!-- Collapsable Card Example -->
+                 <div class="card shadow mb-4">
+                  <!-- Card Header - Accordion -->
+                  <a href="#plant" class="d-block card-header py-3" data-toggle="collapse"
+                    role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                    <div class="row">
+                      <div class="col-9">
+                          <h6 class="m-0 font-weight-bold text-gray-800"><i class="fas fa-trash fa-1x text-danger"></i> Plant Biotechnology Chemicals </h6>
+                      </div>
+                    <div class="col-2">
+                      <h4 align="right" class="fas fa-1x text-info" >{{Pdesposed}}</h4>
+                  </div>
+                  </div>
+                  </a>
+                
+                <!-- Card Content - Collapse -->
+                <div class="collapse show" id="plant">
+                    <div class="card-body">
+                        This chemcials are <strong class="text-danger">Desposed</strong> Chemicals of Plant Biotechnology.
+                        <br><br>
+                        <!-- <h4 class="small font-weight-bold"> Desposed <span
+                          class="float-right">100%</span></h4>
+                        <div class="progress mb-4">
+                          <div class="progress-bar progress-bar progress-bar-animated bg-danger" role="progressbar" style="width: 100%"
+                              aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div> -->
+                      <a href="#"  class="btn btn-info"><i class="fas fa-minus-circle fa-1x text-white"></i> View Lists </a> &nbsp;&nbsp;&nbsp;
+                         
+                    </div>
+                </div>
+            </div>
+  
+  
+             <!-- Collapsable Card Example -->
+             <div class="card shadow mb-4">
+              <!-- Card Header - Accordion -->
+              <a href="#microbial" class="d-block card-header py-3" data-toggle="collapse"
+                role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                <div class="row">
+                  <div class="col-9">
+                      <h6 class="m-0 font-weight-bold text-gray-800"><i class="fas fa-trash fa-1x text-danger"></i> Microbial Biotechnology Chemicals </h6>
+                  </div>
+                <div class="col-2">
+                  <h4 align="right" class="fas fa-1x text-info" >{{Mdesposed}}</h4>
+              </div>
+              </div>
+              </a>
+            
+            <!-- Card Content - Collapse -->
+            <div class="collapse show" id="microbial">
+                <div class="card-body">
+                    This chemcials are <strong class="text-danger">Desposed</strong>  Chemicals of Microbial Biotechnology.
+                    <br><br>
+                    <!-- <h4 class="small font-weight-bold"> Desposed <span class="float-right">100%</span></h4> -->
+                    <!-- <div class="progress mb-4">
+                      <div class="progress-bar progress-bar progress-bar-animated bg-danger" role="progressbar" style="width: 100%"
+                          aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div> -->
+                  <a href="#"  class="btn btn-info"><i class="fas fa-minus-circle fa-1x text-white"></i> View Lists </a> &nbsp;&nbsp;&nbsp;
+                         
+                </div>
+            </div>
+        </div>
+  
+                    <!-- <p>Add some quality, svg illustrations to your project courtesy of <a
+                            target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a
+                        constantly updated collection of beautiful svg images that you can use
+                        completely free and without attribution!</p>
+                    <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on
+                        unDraw &rarr;</a> -->
+                </div>
+            </div>
+  
+        
+        </div>
+
+  </div>
+  <!-- Content Row -->
+
 
 
 
   </div>
   <!-- /.container-fluid -->
 
-<section class="hero">
-    <div class="container">
-      <div class="text-center">
-{% if request.user.is_authenticated %}
 
-
-<!-- <h3> <a href="{% url 'myRequest' %}" > My request </a></h3>
-<h3> <a href="{% url 'chemicalList' %}" > Request Chemical </a></h3>
-<h3> <a href="" > Request New Chemical </a></h3> -->
-
-</div>
-</div>
-</section>
-{% else%}
-<section class="hero">
-  <div class="container mb-5">
-    <div class="row align-items-center">
-      <div class="col-lg-6">
-        <h1 class="hero-heading mb-0">Welcome to  <br> <strong class="text-info">National Agricultural Biotechnology Research center</strong></h1>
-        <div class="row">
-          <div class="col-lg-10">
-            <p class="lead text-muted mt-4 mb-4"></p>
-          </div>
-        </div>
-        <form action="" class="subscription-form"></form>
-          <div class="form-group">
-            <a href="#" data-toggle="modal" data-target="#search" ><button type="submit" class="btn btn-info">==> Get Started <==</button></a>
-          </div>
-        </form>
-      </div>
-      <div class="col-lg-6"><img src="{% static 'image/bio.jpg'%}" alt="..." class="hero-image img-fluid d-none d-lg-block"></div>
-    </div>
-  </div>
-</section>
-
-{% endif %} 
-<div id="add" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade bd-example-modal-lg">
-    <div role="document" class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="modal-content">
-        <div class="modal-header border-bottom-0">
-          <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
-        </div>
-        <section class="">
-            <div class="container">
-          <div class="container text-center">
-            <h1 class="hero-heading">ADD <strong class="text-success">Chemical</strong></h1>
-           
-     
-        <form method="POST" action="" >
-            {% csrf_token %}
-            <div class="form-group">
-                
-             
-              </div>
-
-            <div class="col-lg-5 mx-auto">    
-                
-            <div class="input-group mb-3">
-                <h6>Chemical Name</h6>
-                <div class="input-group-append">
-                    <span class="input-group-text"><i class="fas fa-pen text-success"></i></span>
-                    {{form.name}}
-                </div>
-            </div>
-            <div class="input-group mb-2">
-                <h6>Unit</h6>
-                <div class="input-group-append">
-                    <span class="input-group-text"><i class="fas fa-list text-success"></i></span>
-                    {{form.unit}}
-                </div>
-            </div>
-            <div class="input-group mb-2">
-                <h6>Company</h6>
-                <div class="input-group-append">
-                    <span class="input-group-text"><i class="fas fa-home text-success"> </i></span>
-                    {{form.company}}
-                </div>
-                
-            </div>
-
-            <div class="input-group mb-2">
-                <h6>Description</h6>
-                <div class="input-group-append">
-                    <span class="input-group-text"><i class="fas fa-clipboard-list text-success"></i></span>
-                    {{form.description}}
-                </div>
-            </div>
-
-               <div class="d-flex justify-content-center mt-3 login_container">
-                 <input class="btn btn-success" type="submit" value="Add Chemical">
-               </div>
-        </div>
-        <br>
-        </form>
-        
-     
-     
-      </div>
-      </section>
-    </div>
-  </div>
-  </div>
 {% endblock%}

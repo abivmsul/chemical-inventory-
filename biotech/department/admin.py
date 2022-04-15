@@ -5,3 +5,7 @@ from department.models import *
 admin.site.register(AnimalStore)
 admin.site.register(PlantStore)
 admin.site.register(MicrobialStore)
+admin.site.register(AnimalDesposedChemical)
+admin.site.register(PlantDesposedChemical)
+admin.site.register(MicrobialDesposedChemical)
+ 

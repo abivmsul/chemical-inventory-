@@ -13,7 +13,7 @@ class Researcher(models.Model):
     researcher = models.OneToOneField(User, null=True, on_delete=models.CASCADE )
     name = models.CharField(max_length=100, null=True)
     department =  models.CharField(max_length=100, choices=Department, default='-')
-
+    permission = models.BooleanField(default=False)
     def __str__(self):
 		    return self.name
 
@@ -35,7 +35,7 @@ class Department(models.Model):
     name = models.CharField(max_length= 100 ,null= True)
     phone = models.IntegerField(null= True)
     department =  models.CharField(max_length=100, choices=Department, default='-')
-
+    
     def __str__(self):
 		    return self.name
 

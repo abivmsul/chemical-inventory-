@@ -1,0 +1,313 @@
+{% extends 'main.html'%}
+
+{% block content %}
+
+
+{% if page == 'animal' %}
+<div class="container-fluid">
+    <div class="text-center">
+        <h2>List of<strong class="text-info"> Animal Bio-Technology</strong> Researchers </h2>
+        
+      </div>
+  <!-- Page Heading -->
+
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-info">Researchers</h6>
+    </div>
+    <div class="card-body" style="box-shadow:0 0 25px 0 rgb(29, 175, 185);">
+        <div class="table-responsive">
+            <table class="table table-bordered text-gray-800" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                 <tr>
+                <th>NO</th>
+                <th>Researcher Name</th>
+                <th>Email</th>
+                <th>Department</th>
+                <th>Date Joined</th>
+                <th>Status</th>
+                <th>Action </th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                 <th>NO</th>
+                <th>Researcher Name</th>
+                <th>Email</th>
+                <th>Department</th>
+                <th>Date Joined</th>
+                <th>Status</th>
+                <th>Action </th>
+            </tr>
+        </tfoot>
+        <tbody>
+         {% for Researcher in animalResearcher%}
+          
+            <tr align="center">
+                <td>{{forloop.counter }}</td>
+                <td>{%if Researcher.researcher.is_active and Researcher.permission %}
+                    <sup><i class="fas fa-check-circle fa-1x text-success"></i></sup> {{Researcher.name|title}}
+                    {%elif Researcher.researcher.is_active%}
+                    {{Researcher.name|title}}
+                    {%else%}
+                    <strike>{{Researcher.name|title}}</strike>
+                    {%endif%}
+                </td>
+                <td> {%if Researcher.researcher.is_active%}
+                    {{Researcher.researcher.email}}
+                    {%else%}
+                    <strike>{{Researcher.researcher.email}}</strike>
+                    {%endif%}</td>
+                <td>{{Researcher.department}}</td>
+                <td>{{Researcher.researcher.date_joined}}</td>
+                <td>{%if Researcher.researcher.is_active and Researcher.permission %}
+                    <i class="fas fa-success fa-1x text-success"> Department Privilaged</i>  <i class="fas fa-check-circle fa-1x text-success"></i>
+                    {%elif Researcher.researcher.is_active %}
+                    <i class="fas fa-success fa-1x text-success"> Active</i>  <i class="fas fa-check-circle fa-1x text-success"></i>
+                   
+                    {%else%}
+                    <i class="fas fa-success fa-1x text-danger"> <strike> active</strike></i>  <i class="fas fa-minus-circle fa-1x text-danger"></i>
+                    {%endif%}
+                </td>
+                <td> <a href="{% url 'researcherDetail' Researcher.id %}" >
+                    <i class="fas fa-pen fa-1x text-info"></i>
+                </a>
+                &nbsp;
+
+                <!-- <a href="#"  data-toggle="modal" data-target="#addproduct" class="fas fa-print fa-2x text-info"></a>
+                -->
+                </td>
+                
+               
+                </tr>
+                {%empty%}    
+                <tr>
+                    <td colspan='5'>You Dont have any Researchers</td>
+                </tr>   
+               
+            
+            {%endfor%}
+            
+
+            <!-- <tr>
+                <td colspan="8">
+        
+                <a class='btn btn-sutext-success float-right' href='/'>Back</a>
+                </td>
+            </tr> -->
+          
+        
+          
+        </tbody>
+      </table>
+    </div>
+    </div>
+    </div>
+    </div>
+ {%elif page == 'plant' %}
+ <div class="container-fluid">
+    <div class="text-center">
+        <h2>Requests From <strong class="text-info"> Plant Bio-Technology</strong> Researcher </h2>
+        
+      </div>
+  <!-- Page Heading -->
+
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-info">Requests</h6>
+    </div>
+    <div class="card-body" style="box-shadow:0 0 25px 0 rgb(29, 175, 185);">
+        <div class="table-responsive">
+            <table class="table table-bordered text-gray-800" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                 <tr>
+                 <th>NO</th>
+                <th>Researcher Name</th>
+                <th>Email</th>
+                <th>Department</th>
+                <th>Date Joined</th>
+                <th>Status</th>
+                <th>Action </th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                 <th>NO</th>
+                <th>Researcher Name</th>
+                <th>Email</th>
+                <th>Department</th>
+                <th>Date Joined</th>
+                <th>Status</th>
+                <th>Action </th>
+            </tr>
+        </tfoot>
+        <tbody>
+            {% for Researcher in plantResearcher%}
+          
+            <tr align="center">
+                <td>{{forloop.counter }}</td>
+                <td>{%if Researcher.researcher.is_active and Researcher.permission %}
+                    <sup><i class="fas fa-check-circle fa-1x text-success"></i></sup> {{Researcher.name|title}}
+                    {%elif Researcher.researcher.is_active%}
+                    {{Researcher.name|title}}
+                    {%else%}
+                    <strike>{{Researcher.name|title}}</strike>
+                    {%endif%}</td>
+                <td> {%if Researcher.researcher.is_active%}
+                    {{Researcher.researcher.email}}
+                    {%else%}
+                    <strike>{{Researcher.researcher.email}}</strike>
+                    {%endif%}</td>
+                <td>{{Researcher.department}}</td>
+                <td>{{Researcher.researcher.date_joined}}</td>
+                <td>{%if Researcher.researcher.is_active and Researcher.permission %}
+                    <i class="fas fa-success fa-1x text-success"> Department Privilaged</i>  <i class="fas fa-check-circle fa-1x text-success"></i>
+                    {%elif Researcher.researcher.is_active %}
+                    <i class="fas fa-success fa-1x text-success"> Active</i>  <i class="fas fa-check-circle fa-1x text-success"></i>
+                   
+                    {%else%}
+                    <i class="fas fa-success fa-1x text-danger"> <strike> active</strike></i>  <i class="fas fa-minus-circle fa-1x text-danger"></i>
+                    {%endif%}
+                </td>
+              
+                <td> <a href="{% url 'researcherDetail' Researcher.id %}" >
+                    <i class="fas fa-pen fa-1x text-info"></i>
+                </a>
+                &nbsp;
+
+                <!-- <a href="#"  data-toggle="modal" data-target="#addproduct" class="fas fa-print fa-2x text-info"></a>
+                -->
+                </td>
+                
+               
+                </tr>
+                {%empty%}    
+                <tr>
+                    <td colspan='5'>You Dont have any Researchers</td>
+                </tr>   
+               
+            
+            {%endfor%}
+            <!-- <tr>
+                <td colspan="8">
+        
+                <a class='btn btn-sutext-success float-right' href='/'>Back</a>
+                </td>
+            </tr> -->
+          
+        
+          
+        </tbody>
+      </table>
+    </div>
+    </div>
+    </div>
+    </div>
+{%elif page == 'microbial' %}
+<div class="container-fluid">
+    <div class="text-center">
+        <h2>Requests From <strong class="text-info"> Microbial Bio-Technology</strong> Researcher </h2>
+        
+      </div>
+  <!-- Page Heading -->
+
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-info">Requests</h6>
+    </div>
+    <div class="card-body" style="box-shadow:0 0 25px 0 rgb(29, 175, 185);">
+        <div class="table-responsive">
+            <table class="table table-bordered text-gray-800" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                 <tr>
+                 <th>NO</th>
+                <th>Researcher Name</th>
+                <th>Email</th>
+                <th>Department</th>
+                <th>Date Joined</th>
+                <th>Status</th>
+                <th>Action </th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>NO</th>
+                <th>Researcher Name</th>
+                <th>Email</th>
+                <th>Department</th>
+                <th>Date Joined</th>
+                <th>Status</th>
+                <th>Action </th>
+            </tr>
+        </tfoot>
+        <tbody>
+            {% for Researcher in microbialResearcher%}
+          
+            <tr align="center">
+                <td>{{forloop.counter }}</td>
+                <td>{%if Researcher.researcher.is_active and Researcher.permission %}
+                    <sup><i class="fas fa-check-circle fa-1x text-success"></i></sup> {{Researcher.name|title}}
+                    {%elif Researcher.researcher.is_active%}
+                    {{Researcher.name|title}}
+                    {%else%}
+                    <strike>{{Researcher.name|title}}</strike>
+                    {%endif%}</td>
+                <td>
+                    {%if Researcher.researcher.is_active%}
+                    {{Researcher.researcher.email}}
+                    {%else%}
+                    <strike>{{Researcher.researcher.email}}</strike>
+                    {%endif%}</td>
+                </td>
+                <td>{{Researcher.department}}</td>
+                <td>{{Researcher.researcher.date_joined}}</td>
+                <td>{%if Researcher.researcher.is_active and Researcher.permission %}
+                    <i class="fas fa-success fa-1x text-success"> Department Privilaged</i>  <i class="fas fa-check-circle fa-1x text-success"></i>
+                    {%elif Researcher.researcher.is_active %}
+                    <i class="fas fa-success fa-1x text-success"> Active</i>  <i class="fas fa-check-circle fa-1x text-success"></i>
+                   
+                    {%else%}
+                    <i class="fas fa-success fa-1x text-danger"> <strike> active</strike></i>  <i class="fas fa-minus-circle fa-1x text-danger"></i>
+                    {%endif%}
+                </td>
+              
+                <td> <a  href="{% url 'researcherDetail' Researcher.id %}" >
+                    <i class="fas fa-pen fa-1x text-info"></i>
+                </a>
+                &nbsp;
+
+                <!-- <a href="#"  data-toggle="modal" data-target="#addproduct" class="fas fa-print fa-2x text-info"></a>
+                -->
+                </td>
+                
+               
+                </tr>
+                {%empty%}    
+                <tr>
+                    <td colspan='5'>You Dont have any Researchers</td>
+                </tr>   
+               
+            
+            {%endfor%}
+
+            <!-- <tr>
+                <td colspan="8">
+        
+                <a class='btn btn-sutext-success float-right' href='/'>Back</a>
+                </td>
+            </tr> -->
+          
+        
+          
+        </tbody>
+      </table>
+    </div>
+    </div>
+    </div>
+    </div>
+{%endif%}
+
+{% endblock%}

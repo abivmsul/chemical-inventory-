@@ -1,0 +1,164 @@
+{% extends 'main.html'%}
+
+{% block content %}
+
+
+
+<div class="container-fluid">
+    
+      <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h2><strong class="text-info"> National Agricultural Biotechnology Research Center</strong> Custodians </h2>
+        &nbsp;
+        <a href="#"  data-toggle="modal" data-target="#custodian" class=" btn btn-sm btn-info shadow-sm"><i
+                class="fas fa-plus fa-sm text-white-50"></i> Add New Custodian</a>
+    </div>
+  <!-- Page Heading -->
+
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-info">Custodian</h6>
+    </div>
+    <div class="card-body" style="box-shadow:0 0 25px 0 rgb(29, 175, 185);">
+        <div class="table-responsive">
+            <table class="table table-bordered text-gray-800" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                 <tr>
+                <th>NO</th>
+                <th>Custodian Name</th>
+                <th>Email</th>
+               
+                <th>Date Joined</th>
+                <th>Status</th>
+                <th>Action </th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                 <th>NO</th>
+                <th>Program coordinator Name</th>
+                <th>Email</th>
+               
+                <th>Date Joined</th>
+                <th>Status</th>
+                <th>Action </th>
+            </tr>
+        </tfoot>
+        <tbody>
+
+         {% for custodian in custodians %}
+          
+            <tr align="center">
+                <td>{{forloop.counter }}</td>
+                <td>
+                    {%if custodian.custodian.is_active%}
+                    {{custodian.name|title}}
+                    {%else%}
+                    <strike>{{custodian.name|title}}</strike>
+                    {%endif%}
+                </td>
+                <td> {%if custodian.custodian.is_active%}
+                    {{custodian.custodian.email}}
+                    {%else%}
+                    <strike>{{custodian.custodian.id}}</strike>
+                    {%endif%}</td>
+               
+                <td>{{custodian.custodian.date_joined}}</td>
+                <td>
+                     {%if custodian.custodian.is_active %}
+                    <i class="fas fa-success fa-1x text-success"> Active</i>  <i class="fas fa-check-circle fa-1x text-success"></i>
+                    {%else%}
+                    <i class="fas fa-success fa-1x text-danger"> <strike> active</strike></i>  <i class="fas fa-minus-circle fa-1x text-danger"></i>
+                    {%endif%}
+                </td>
+                <td> <a href="{% url 'custodianDetail' custodian.id %}" >
+                    <i class="fas fa-pen fa-1x text-info"></i>
+                </a>
+                &nbsp;
+
+                <!-- <a href="#"  data-toggle="modal" data-target="#addproduct" class="fas fa-print fa-2x text-info"></a>
+                -->
+                </td>
+                
+               
+                </tr>
+                {%empty%}    
+                <tr>
+                    <td colspan='5'>There are no Custodians</td>
+                </tr>   
+               
+            
+            {%endfor%}
+            
+
+            <!-- <tr>
+                <td colspan="8">
+        
+                <a class='btn btn-sutext-success float-right' href='/'>Back</a>
+                </td>
+            </tr> -->
+          
+        
+          
+        </tbody>
+      </table>
+    </div>
+    </div>
+    </div>
+    </div>
+
+
+        <!-- Add Custodianuser Modal-->
+        <div class="modal fade bd-example-modal-lg" id="custodian" tabindex="-1" role="dialog" aria-labelledby="detail"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content" style="box-shadow:0 0 25px 0 rgb(29, 175, 185);">
+                <div class="modal-header border-bottom-0">
+                    <h5 class="title" id="detail">Custodian</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                   </div>
+                   <div class="modal-body border-bottom-0">
+                   
+                          <div class="col-md-10 mx-auto">
+                                     <div class="card" style="box-shadow:0 0 25px 0 rgb(29, 175, 185);">
+                                       <div class="card-header">
+                                            <h4>Add Custodian User</h4>
+                                       </div>
+                                       <div class="card-body">
+                                           <form method="POST" action="{% url 'addUser' %}"  enctype='multipart/form-data'  >
+                                               {% csrf_token %}
+                                               <!-- <div class="input-group mb-3">
+                                                   <div class="input-group-append">
+                                                       <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                                   </div>
+                                                   {{form.username}}
+                                               </div> -->
+                                               <div class="form-group mb-4">
+                                                   <label>User Name<sup class="text-danger">&#10033;</sup></label>
+                                                   <input type="text" name="username" placeholder="Name" class="form-control" required>
+                                                 </div>
+                                                 <div class="form-group mb-4">
+                                                   <label>Email<sup class="text-danger">&#10033;</sup></label>
+                                                   <input type="email" name="email" placeholder="example@gmial.com" class="form-control" required>
+                                                 </div>
+                                              
+                                            
+                       
+                                                  <div class="d-flex justify-content-center mt-3 login_container">
+                                                   <input type="hidden" name="next" value="{{ request.path }}">
+                                                    <input class="btn btn-info" name="custodian" type="submit" value="Create Account">
+                                                  </div>
+                       
+                                           </form>
+                                       </div>
+                                     </div>
+                                 </div>            
+                     
+                  </div>
+     
+            </div>
+        </div>
+       </div>
+{% endblock%}

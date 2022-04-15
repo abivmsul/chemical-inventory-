@@ -1,0 +1,383 @@
+{% extends 'main.html'%}
+
+{% block content %}
+
+
+{% if page == 'animal' %}
+<div class="container-fluid">
+    <div class="text-center">
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h2> Animal Bio-Technology Requests To <strong class="text-danger"> Despose </strong> Chemicals</h2> 
+            <!-- <a href="#" class="  btn btn-sm btn-info shadow-sm"><i
+                    class="fas fa-download fa-sm text-white-50"></i> Download Report</a> -->
+
+                    <!-- <li class="nav-item">
+                        <a class=" btn btn-sm btn-info shadow-sm  collapsed " href="#" data-toggle="collapse" data-target="#report"
+                            aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-download fa-sm text-white-50"></i> Generate Report
+                        </a>
+                        <div id="report" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">report type:</h6>
+                                <a class="collapse-item btn btn-sm btn-info shadow-sm " href="{% url 'csvChemicalReport' page %}"><i class="fas fa-table fa-sm text-white-50"></i> CSV file</a>
+                                <a class="collapse-item btn btn-sm btn-info shadow-sm " href="#"><i class="fas fa-clipboard-list fa-sm text-white-50"></i> Pdf file</a>
+                            </div>
+                        </div>
+                    </li> -->
+        </div>
+      </div>
+  <!-- Page Heading -->
+
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-info">Chemical Lists</h6>
+    </div>
+    <div class="card-body" style="box-shadow:0 0 25px 0 rgb(29, 175, 185);">
+        <div class="table-responsive">
+            <table class="table table-bordered text-gray-800" id="dataTable" width="100%" cellspacing="0" >
+                <thead>
+                 <tr>
+                <th>NO</th>
+                <th>Chemical Name</th>
+                <th>Company</th>
+                <th>Quantity</th>
+                <th>Shelf</th>
+                <th>Cabinate</th>
+                <th>Expire Date </th>
+                <th>Desposed Date</th>
+                <th>Status</th>
+                <th>Action</th>
+                
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>NO</th>
+                <th>Chemical Name</th>
+                <th>Company</th>
+                <th>Quantity</th>
+                <th>Shelf</th>
+                <th>Cabinate</th>
+                <th>Expire Date</th>
+                <th>Desposed Date</th>
+                <th>Status</th>
+                <th>Action</th>
+                
+            </tr>
+        </tfoot>
+        <tbody>
+         {% for chemicals in obj %}
+          
+            <tr align="center">
+                <td>{{forloop.counter }}</td>
+                <td>{{chemicals.chemical.name}}</td>
+                <td>{{chemicals.chemical.company}}</td>
+                 <td>{{chemicals.available}}</td>
+                  <td>{{chemicals.shelf}}</td>
+                  <td>{{chemicals.cabinate}}</td> 
+                  <td>
+                     
+                  <i class="fas fa-success fa-1x text-warning"> <strike> {{chemicals.expireDate}}</strike></i>
+               
+                </td>
+                    <td> 
+                        {% if chemicals.desposed%}
+                        <div class="progress mb-4">
+                            <div class="progress-bar progress-bar progress-bar-animated bg-danger" role="progressbar" style="width: 100%"
+                                aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">{{chemicals.desposedDate}}</div>
+                        </div>
+                        {%else%}
+                        -
+                        {%endif%}
+                    </td>
+                    <td>
+                        {% if chemicals.desposed %}
+   
+                        <span class="btn btn-success btn-sm">Desposed</span> &nbsp;
+                        {%else%}
+                        <span class="btn btn-info btn-sm">Pending</span> &nbsp;
+                        {%endif%}
+                      
+                       </td>
+                    <td> 
+                        {% if chemicals.desposed%}
+                        <i class="fas fa-check-square fa-1x text-danger"> Disposed  </i>
+                        {%else%}
+                        
+                        <a  href="{% url 'aDesposeConfirm' chemicals.id %}" >
+                            <i class="fas fa-pen-square fa-1x text-success"> Confirm </i>
+                        </a>
+                        {%endif%}
+                    </td>
+               
+                </tr>
+                {%empty%}    
+                <tr>
+                    <td colspan='5'>There are no chemicals</td>
+                </tr>   
+               
+            
+            {%endfor%}
+        
+          
+        </tbody>
+      </table>
+    
+    </div>
+    </div>
+    </div>
+    </div>
+ {%elif page == 'plant'%}
+ <div class="container-fluid">
+    <div class="text-center">
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h2> Plant Bio-Technology Requests To <strong class="text-danger"> Despose </strong> Chemicals</h2> 
+            <!-- <a href="#" class="  btn btn-sm btn-info shadow-sm"><i
+                    class="fas fa-download fa-sm text-white-50"></i> Download Report</a> -->
+
+                    <!-- <li class="nav-item">
+                        <a class=" btn btn-sm btn-info shadow-sm  collapsed " href="#" data-toggle="collapse" data-target="#report"
+                            aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-download fa-sm text-white-50"></i> Generate Report
+                        </a>
+                        <div id="report" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">report type:</h6>
+                                <a class="collapse-item btn btn-sm btn-info shadow-sm " href="{% url 'csvChemicalReport' page %}"><i class="fas fa-table fa-sm text-white-50"></i> CSV file</a>
+                                <a class="collapse-item btn btn-sm btn-info shadow-sm " href="#"><i class="fas fa-clipboard-list fa-sm text-white-50"></i> Pdf file</a>
+                            </div>
+                        </div>
+                    </li> -->
+        </div>
+      </div>
+  <!-- Page Heading -->
+
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-info">Chemical Lists</h6>
+    </div>
+    <div class="card-body" style="box-shadow:0 0 25px 0 rgb(29, 175, 185);">
+        <div class="table-responsive">
+            <table class="table table-bordered text-gray-800" id="dataTable" width="100%" cellspacing="0" >
+                <thead>
+                 <tr>
+                <th>NO</th>
+                <th>Chemical Name</th>
+                <th>Company</th>
+                <th>Quantity</th>
+                <th>Shelf</th>
+                <th>Cabinate</th>
+                <th>Expire Date </th>
+                <th>Desposed Date</th>
+                <th>Status</th>
+                <th>Action</th>
+                
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>NO</th>
+                <th>Chemical Name</th>
+                <th>Company</th>
+                <th>Quantity</th>
+                <th>Shelf</th>
+                <th>Cabinate</th>
+                <th>Expire Date</th>
+                <th>Desposed Date</th>
+                <th>Status</th>
+                <th>Action</th>
+                
+            </tr>
+        </tfoot>
+        <tbody>
+         {% for chemicals in obj %}
+          
+            <tr align="center">
+                <td>{{forloop.counter }}</td>
+                <td>{{chemicals.chemical.name}}</td>
+                <td>{{chemicals.chemical.company}}</td>
+                 <td>{{chemicals.available}}</td>
+                  <td>{{chemicals.shelf}}</td>
+                  <td>{{chemicals.cabinate}}</td> 
+                  <td>
+                     
+                  <i class="fas fa-success fa-1x text-danger"> <strike> {{chemicals.expireDate}}</strike></i>
+               
+                </td>
+                    <td> 
+                        {% if chemicals.desposed%}
+                        <div class="progress mb-4">
+                            <div class="progress-bar progress-bar progress-bar-animated bg-danger" role="progressbar" style="width: 100%"
+                                aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">{{chemicals.desposedDate}}</div>
+                        </div>
+                        {%else%}
+                        -
+                        {%endif%}
+                    </td>
+                    <td>
+                        {% if chemicals.desposed %}
+   
+                        <span class="btn btn-success btn-sm">Desposed</span> &nbsp;
+                        {%else%}
+                        <span class="btn btn-info btn-sm">Pending</span> &nbsp;
+                        {%endif%}
+                      
+                       </td>
+                    <td> 
+                        {% if chemicals.desposed%}
+                        -
+                        {%else%}
+                        
+                        <a  href="{% url 'pDesposeConfirm' chemicals.id %}" >
+                            <i class="fas fa-pen-square fa-2x text-info"> </i>
+                        </a>
+                        {%endif%}
+                    </td>
+               
+                </tr>
+                {%empty%}    
+                <tr>
+                    <td colspan='5'>There are no chemicals</td>
+                </tr>   
+               
+            
+            {%endfor%}
+        
+          
+        </tbody>
+      </table>
+    
+    </div>
+    </div>
+    </div>
+    </div>
+{%elif page == 'microbial'%}
+<div class="container-fluid">
+    <div class="text-center">
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h2> Microbial Bio-Technology Requests To <strong class="text-danger"> Despose </strong> Chemicals</h2> 
+            <!-- <a href="#" class="  btn btn-sm btn-info shadow-sm"><i
+                    class="fas fa-download fa-sm text-white-50"></i> Download Report</a> -->
+
+                    <!-- <li class="nav-item">
+                        <a class=" btn btn-sm btn-info shadow-sm  collapsed " href="#" data-toggle="collapse" data-target="#report"
+                            aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-download fa-sm text-white-50"></i> Generate Report
+                        </a>
+                        <div id="report" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">report type:</h6>
+                                <a class="collapse-item btn btn-sm btn-info shadow-sm " href="{% url 'csvChemicalReport' page %}"><i class="fas fa-table fa-sm text-white-50"></i> CSV file</a>
+                                <a class="collapse-item btn btn-sm btn-info shadow-sm " href="#"><i class="fas fa-clipboard-list fa-sm text-white-50"></i> Pdf file</a>
+                            </div>
+                        </div>
+                    </li> -->
+        </div>
+      </div>
+  <!-- Page Heading -->
+
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-info">Chemical Lists</h6>
+    </div>
+    <div class="card-body" style="box-shadow:0 0 25px 0 rgb(29, 175, 185);">
+        <div class="table-responsive">
+            <table class="table table-bordered text-gray-800" id="dataTable" width="100%" cellspacing="0" >
+                <thead>
+                 <tr>
+                <th>NO</th>
+                <th>Chemical Name</th>
+                <th>Company</th>
+                <th>Quantity</th>
+                <th>Shelf</th>
+                <th>Cabinate</th>
+                <th>Expire Date </th>
+                <th>Desposed Date</th>
+                <th>Status</th>
+                <th>Action</th>
+                
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>NO</th>
+                <th>Chemical Name</th>
+                <th>Company</th>
+                <th>Quantity</th>
+                <th>Shelf</th>
+                <th>Cabinate</th>
+                <th>Expire Date</th>
+                <th>Desposed Date</th>
+                <th>Status</th>
+                <th>Action</th>
+                
+            </tr>
+        </tfoot>
+        <tbody>
+         {% for chemicals in obj %}
+          
+            <tr align="center">
+                <td>{{forloop.counter }}</td>
+                <td>{{chemicals.chemical.name}}</td>
+                <td>{{chemicals.chemical.company}}</td>
+                 <td>{{chemicals.available}}</td>
+                  <td>{{chemicals.shelf}}</td>
+                  <td>{{chemicals.cabinate}}</td> 
+                  <td>
+                     
+                  <i class="fas fa-success fa-1x text-danger"> <strike> {{chemicals.expireDate}}</strike></i>
+               
+                </td>
+                    <td> 
+                        {% if chemicals.desposed%}
+                        <div class="progress mb-4">
+                            <div class="progress-bar progress-bar progress-bar-animated bg-danger" role="progressbar" style="width: 100%"
+                                aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">{{chemicals.desposedDate}}</div>
+                        </div>
+                        {%else%}
+                        -
+                        {%endif%}
+                    </td>
+                    <td>
+                        {% if chemicals.desposed %}
+   
+                        <span class="btn btn-success btn-sm">Desposed</span> &nbsp;
+                        {%else%}
+                        <span class="btn btn-info btn-sm">Pending</span> &nbsp;
+                        {%endif%}
+                      
+                       </td>
+                    <td> 
+                        {% if chemicals.desposed%}
+                        -
+                        {%else%}
+                        
+                        <a  href="{% url 'mDesposeConfirm' chemicals.id %}" >
+                            <i class="fas fa-pen-square fa-2x text-info"> </i>
+                        </a>
+                        {%endif%}
+                    </td>
+               
+                </tr>
+                {%empty%}    
+                <tr>
+                    <td colspan='5'>There are no chemicals</td>
+                </tr>   
+               
+            
+            {%endfor%}
+        
+          
+        </tbody>
+      </table>
+    
+    </div>
+    </div>
+    </div>
+    </div>
+{%endif%}
+
+{% endblock%}

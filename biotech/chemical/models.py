@@ -8,7 +8,7 @@ class Chemical(models.Model):
     quantity = models.IntegerField(default=0)
     unit = models.CharField(max_length=30)
     company = models.CharField(max_length=100)
-    description = models.TextField(max_length=100)
+    description = models.CharField(max_length=100)
     #expireDate = models.DateField()
     
     def __str__(self):
@@ -40,7 +40,7 @@ class Request(models.Model):
     received = models.BooleanField(default=False)
     deny = models.BooleanField(default=False)
     checked = models.BooleanField(default=False)
-    pin = models.CharField(max_length=3,default='aaa')
+    pin = models.CharField(max_length=4)
 
     class Meta:
         ordering = ['-ordered_date' ,'-received']

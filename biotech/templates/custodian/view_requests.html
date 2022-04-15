@@ -23,14 +23,19 @@
                  <tr>
                 <th>NO</th>
                 <th>Requested Date</th>
-                <th>Department</th>
+                <th>Department</th> 
+                {% if req == 'department' %}
+                <th>program Coordinator</th>
+                {%else%}
                 <th>Researcher Name</th>
+                {%endif%}
                 <th>Chemical Name</th>
                 <th>Quantity</th>
                 <th>Confirmed Quantity</th>
                 <th>Unit</th>
                 <th>Status</th>
                 {% if req == 'department' %}
+                <th>-</th>
                 {%else%}
                 <th>Action</th>
                 {%endif%}
@@ -41,13 +46,18 @@
                 <th>NO</th>
                 <th>Requested Date</th>
                 <th>Department</th>
+                {% if req == 'department' %}
+                <th>program Coordinator</th>
+                {%else%}
                 <th>Researcher Name</th>
+                {%endif%}
                 <th>Chemical Name</th>
                 <th>Quantity</th>
                 <th>Confirmed Quantity</th>
                 <th>Unit</th>
                 <th>Status</th>
                 {% if req == 'department' %}
+                <th>-</th>
                 {%else%}
                 <th>Action</th>
                 {%endif%}
@@ -89,8 +99,9 @@
                     <tr align="center">
                         <td>" {{requestedchemical.issuedquantity}} "
                               &nbsp; 
-                              
-                              {% if req == 'department' %}
+                        </td>
+                        <td>
+                            {% if req == 'department' %}
                               <a  href="{% url 'animaldRequestDetal' requests.id  requestedchemical.id%}" > 
                         <i class="fas fa-pen-square fa-1x text-info"> Detail </i>
                                 </a>
@@ -121,7 +132,7 @@
                     <span class="btn btn-info btn-sm">Pending</span> &nbsp;
                     {%endif%}
                     <br>
-                    <a href="#"  data-toggle="modal" data-target="#addproduct" class="fas fa-print fa-2x text-info"></a>
+                    
                 </td>
               
                  <td>
@@ -182,13 +193,18 @@
                 <th>NO</th>
                 <th>Requested Date</th>
                 <th>Department</th>
+                {% if req == 'department' %}
+                <th>program Coordinator</th>
+                {%else%}
                 <th>Researcher Name</th>
+                {%endif%}
                 <th>Chemical Name</th>
                 <th>Quantity</th>
                 <th>Confirmed Quantity</th>
                 <th>Unit</th>
                 <th>Status</th>
                 {% if req == 'department' %}
+                <th>-</th>
                 {%else%}
                 <th>Action</th>
                 {%endif%}
@@ -199,13 +215,18 @@
                 <th>NO</th>
                 <th>Requested Date</th>
                 <th>Department</th>
+                {% if req == 'department' %}
+                <th>program Coordinator</th>
+                {%else%}
                 <th>Researcher Name</th>
+                {%endif%}
                 <th>Chemical Name</th>
                 <th>Quantity</th>
                 <th>Confirmed Quantity</th>
                 <th>Unit</th>
                 <th>Status</th>
                 {% if req == 'department' %}
+                <th>-</th>
                 {%else%}
                 <th>Action</th>
                 {%endif%}
@@ -248,8 +269,9 @@
                     <tr align="center">
                         <td>" {{requestedchemical.issuedquantity}} "
                               &nbsp; 
-                              
-                              {% if req == 'department' %}
+                        </td>
+                        <td>
+                            {% if req == 'department' %}
                               <a  href="{% url 'plantdRequestDetal' requests.id  requestedchemical.id%}" > 
                         <i class="fas fa-pen-square fa-1x text-info"> Detail </i>
                                 </a>
@@ -279,7 +301,7 @@
                     {% elif requests.confirmed == False %}
                     <span class="btn btn-info btn-sm">Pending</span> &nbsp;
                     {%endif%}
-                    <a href="#"  data-toggle="modal" data-target="#addproduct" class="fas fa-print fa-2x text-info"></a>
+                    
                     <hr>
                 </td>
               
@@ -341,13 +363,18 @@
                 <th>NO</th>
                 <th>Requested Date</th>
                 <th>Department</th>
+                {% if req == 'department' %}
+                <th>program Coordinator</th>
+                {%else%}
                 <th>Researcher Name</th>
+                {%endif%}
                 <th>Chemical Name</th>
                 <th>Quantity</th>
                 <th>Confirmed Quantity</th>
                 <th>Unit</th>
                 <th>Status</th>
                 {% if req == 'department' %}
+                <th>-</th>
                 {%else%}
                 <th>Action</th>
                 {%endif%}
@@ -358,13 +385,18 @@
                 <th>NO</th>
                 <th>Requested Date</th>
                 <th>Department</th>
+                {% if req == 'department' %}
+                <th>program Coordinator</th>
+                {%else%}
                 <th>Researcher Name</th>
+                {%endif%}
                 <th>Chemical Name</th>
                 <th>Quantity</th>
                 <th>Confirmed Quantity</th>
                 <th>Unit</th>
                 <th>Status</th>
                 {% if req == 'department' %}
+                <th>-</th>
                 {%else%}
                 <th>Action</th>
                 {%endif%}
@@ -407,8 +439,9 @@
                     <tr align="center">
                         <td>" {{requestedchemical.issuedquantity}} "
                               &nbsp; 
-                              
-                              {% if req == 'department' %}
+                        </td>
+                        <td>
+                            {% if req == 'department' %}
                               <a  href="{% url 'microbialdRequestDetal' requests.id  requestedchemical.id%}" > 
                         <i class="fas fa-pen-square fa-1x text-info"> Detail </i>
                                 </a>
@@ -439,7 +472,7 @@
                     <span class="btn btn-info btn-sm">Pending</span>
                     {%endif%}
                     <br>
-                    <a href="#"  data-toggle="modal" data-target="#addproduct" class="fas fa-print fa-2x text-info"></a>
+                    
                
                 </td>
               

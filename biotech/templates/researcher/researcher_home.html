@@ -15,22 +15,43 @@
 
       <section class="hero">
         <div class="container mb-5">
-          <div class="row align-items-center">
-            <div class="col-lg-6">
-              <h1 class="hero-heading mb-0">Welcome to  <br> <strong class="text-info">National Agricultural Biotechnology Research center</strong></h1>
-              <div class="row">
-                <div class="col-lg-10">
-                  <p class="lead text-muted mt-4 mb-4"></p>
+            <div class="row align-items-center">
+                {% if request.user.researcher.department == 'Plant Biotechnology' %}
+                <div class="col-lg-6">
+                  <h1 class="hero-heading mb-0"><strong class="text-info">National Agricultural Biotechnology Research center</strong></h1>
+                  <div class="row">
+                    <div class="col-lg-10">
+                      <p class="lead text-muted mt-4 mb-4"></p>
+                    </div>
+                  </div>
+                
                 </div>
+                <div class="col-lg-6"><img src="{% static 'img/plantresearcher.svg'%}" alt="..." class="img-fluid px-3 px-sm-4 mt-3 mb-4"></div>
+                {% elif request.user.researcher.department == 'Microbial Biotechnology' %}
+                <div class="col-lg-6">
+                  <h1 class="hero-heading mb-0"><strong class="text-info">National Agricultural Biotechnology Research center</strong></h1>
+                  <div class="row">
+                    <div class="col-lg-10">
+                      <p class="lead text-muted mt-4 mb-4"></p>
+                    </div>
+                  </div>
+                
+                </div>
+                <div class="col-lg-6"><img src="{% static 'img/microresearcher.svg'%}" alt="..." class="img-fluid px-3 px-sm-4 mt-3 mb-4"></div>
+                {% elif request.user.researcher.department == 'Animal Biotechnology' %}
+                <div class="col-lg-6">
+                  <h1 class="hero-heading mb-0"><strong class="text-info">National Agricultural Biotechnology Research center</strong></h1>
+                  <div class="row">
+                    <div class="col-lg-10">
+                      <p class="lead text-muted mt-4 mb-4"></p>
+                    </div>
+                  </div>
+                
+                </div>
+                <div class="col-lg-6"><img src="{% static 'img/animal.svg'%}" alt="..." class="img-fluid px-3 px-sm-4 mt-3 mb-4"></div>
+                
+                {%endif%}
               </div>
-              <form action="" class="subscription-form"></form>
-                <!-- <div class="form-group">
-                  <a href="#" data-toggle="modal" data-target="#search" ><button type="submit" class="btn btn-info">==> Get Started <==</button></a>
-                </div> -->
-              </form>
-            </div>
-            <div class="col-lg-6"><img src="{% static 'img/eiar.jpg'%}" alt="..." class="hero-image img-fluid d-none d-lg-block"></div>
-          </div>
         </div>
       </section>
       
@@ -151,42 +172,6 @@
   </div>
   <!-- /.container-fluid -->
 
-<section class="hero">
-    <div class="container">
-      <div class="text-center">
-{% if request.user.is_authenticated %}
-
-
-<!-- <h3> <a href="{% url 'myRequest' %}" > My request </a></h3>
-<h3> <a href="{% url 'chemicalList' %}" > Request Chemical </a></h3>
-<h3> <a href="" > Request New Chemical </a></h3> -->
-
-</div>
-</div>
-</section>
-{% else%}
-<section class="hero">
-  <div class="container mb-5">
-    <div class="row align-items-center">
-      <div class="col-lg-6">
-        <h1 class="hero-heading mb-0">Welcome to  <br> <strong class="text-primary">National Agricultural Biotechnology Research center</strong></h1>
-        <div class="row">
-          <div class="col-lg-10">
-            <p class="lead text-muted mt-4 mb-4"></p>
-          </div>
-        </div>
-        <form action="" class="subscription-form"></form>
-          <div class="form-group">
-            <a href="#" data-toggle="modal" data-target="#search" ><button type="submit" class="btn btn-primary">==> Get Started <==</button></a>
-          </div>
-        </form>
-      </div>
-      <div class="col-lg-6"><img src="{% static 'image/bio.jpg'%}" alt="..." class="hero-image img-fluid d-none d-lg-block"></div>
-    </div>
-  </div>
-</section>
-
-{% endif %} 
 
 
 {% endblock%}

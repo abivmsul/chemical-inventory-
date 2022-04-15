@@ -6,51 +6,96 @@
 
     <!-- Sidebar Toggle (Topbar) -->
     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-        <i class="fa fa-bars"></i>
+        <i class="fa fa-bars text-info"></i>
     </button>
-
-  
+                {% if request.user.groups.all.0.name == 'Department' %}
+                    <form method="GET" action="{% url 'chemicalList' %}" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" name="q" class="form-control bg-light border-0 small" placeholder="Search for chemicals..."
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-info" type="submit">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    {% elif request.user.groups.all.0.name == 'Researcher' %} 
+                    
+                        {% if request.user.researcher.department == 'Animal Biotechnology' %}
+                        <form method="GET" action="{% url 'animalchemicalList' %}" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                            {% elif request.user.researcher.department == 'Plant Biotechnology' %}
+                        <form method="GET" action="{% url 'plantchemicalList' %}" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                            {% elif request.user.researcher.department == 'Microbial Biotechnology' %}
+                        <form method="GET" action="{% url 'microbialchemicalList' %}" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                            {%endif%}
+                            <div class="input-group">
+                                <input type="text" name="q" class="form-control bg-light border-0 small" placeholder="Search for chemicals..."
+                                    aria-label="Search" aria-describedby="basic-addon2">
+                                <div class="input-group-append">
+                                    <button class="btn btn-info" type="submit">
+                                        <i class="fas fa-search fa-sm"></i>
+                                    </button>
+                                </div>
+                            </div>
+                      </form>
+                    {%endif%}
 
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">
-        {% if request.user.groups.all.0.name == 'Department' %} 
-        <li class="nav-item">
-            <br>
-        <form method="GET" action="{% url 'chemicalList' %}" class="subscription-form">
-            <div class="form-group">
-                <input type="text" name="q" placeholder=" Search Chemical...">
+          <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+          
+          <li class="nav-item dropdown no-arrow d-sm-none">
+            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-search fa-fw text-info"></i>
+            </a>
+            <!-- Dropdown - Messages -->
+            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                aria-labelledby="searchDropdown">
+                {% if request.user.groups.all.0.name == 'Department' %}
+                <form method="GET" action="{% url 'chemicalList' %}" class="form-inline mr-auto w-100 navbar-search">
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control bg-light border-0 small"
+                            placeholder="Search forchemcials..." aria-label="Search"
+                            aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-info" type="submit">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                {% elif request.user.groups.all.0.name == 'Researcher' %} 
+                        {% if request.user.researcher.department == 'Animal Biotechnology' %}
+                        <form method="GET" action="{% url 'animalchemicalList' %}" class="form-inline mr-auto w-100 navbar-search">
+                        {% elif request.user.researcher.department == 'Plant Biotechnology' %}
+                        <form method="GET" action="{% url 'plantchemicalList' %}" class="form-inline mr-auto w-100 navbar-search">
+                        {% elif request.user.researcher.department == 'Microbial Biotechnology' %}
+                        <form method="GET" action="{% url 'microbialchemicalList' %}" class="form-inline mr-auto w-100 navbar-search">
+                        {%endif%}   
+                            <div class="input-group">
+                            <input type="text" name="q" class="form-control bg-light border-0 small"
+                                placeholder="Search for chemcials..." aria-label="Search"
+                                aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-info" type="submit">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                {%endif%}
             </div>
-          </form>
         </li>
-        {%endif%}
-
-        {% if request.user.groups.all.0.name == 'Researcher' %} 
-        <li class="nav-item">
-            <br>
-            {% if request.user.researcher.department == 'Animal Biotechnology' %}
-        <form method="GET" action="{% url 'animalchemicalList' %}" class="subscription-form">
-            {% elif request.user.researcher.department == 'Plant Biotechnology' %}
-        <form method="GET" action="{% url 'plantchemicalList' %}" class="subscription-form">
-            {% elif request.user.researcher.department == 'Microbial Biotechnology' %}
-        <form method="GET" action="{% url ' microbialchemicalList' %}" class="subscription-form">
-            {%endif%}
-            <div class="form-group">
-                <input type="text" class="" name="q" placeholder=" Search Chemical..." required>
-                <button type="submit" class="btn btn-info">
-                    <i class="fas fa-search fa-1x icon-white"></i>
-                  </button>
-            </div>
-          </form>
-        </li>
+        {% if request.user.groups.all.0.name == 'Researcher' and request.user|cart_item_count > 0 %}
+        <li class="nav-item no-arrow mx-1"> <a href="{% url 'requestSummary' %}" class="nav-link"> <i class="fas fa-list text-info">&nbsp;</i> <span class="mr-2 d-none d-lg-inline text-gray-600 "> {{ request.user|cart_item_count }}&nbsp;</span><span class="mr-2 d-none d-lg-inline text-gray-600 small"> Chemicals in the List </span></a></li>
+        
+        {% elif request.user.groups.all.0.name == 'Department' and request.user|cart_item_count > 0 %}
+        <li class="nav-item no-arrow mx-1"> <a href="{% url 'requestSummary' %}"  class="nav-link"> <i class="fas fa-list text-info">&nbsp;</i><span class="mr-2 d-none d-lg-inline text-gray-600 "> {{ request.user|cart_item_count }}&nbsp;</span><span class="mr-2 d-none d-lg-inline text-gray-600 small"> Chemicals in the List </span></a></li>
         {%endif%}
         <div class="topbar-divider d-none d-sm-block"></div>
         
-        {% if request.user.groups.all.0.name == 'Researcher' and request.user|cart_item_count > 0 %}
-        <li class="nav-item"> <a href="{% url 'requestSummary' %}" class="nav-link"><span class="mr-2 d-none d-lg-inline text-gray-600 "> {{ request.user|cart_item_count }}&nbsp;<i class="fas fa-list text-info">&nbsp;</i></span><span class="mr-2 d-none d-lg-inline text-gray-600 small"> Chemicals in the List </span></a></li>
-        
-        {% elif request.user.groups.all.0.name == 'Department' and request.user|cart_item_count > 0 %}
-        <li class="nav-item"> <a href="{% url 'requestSummary' %}" class="nav-link"><span class="mr-2 d-none d-lg-inline text-gray-600 "> {{ request.user|cart_item_count }}&nbsp;<i class="fas fa-list text-info">&nbsp;</i></span><span class="mr-2 d-none d-lg-inline text-gray-600 small"> Chemicals in the List </span></a></li>
-        {%endif%}
         <!-- Nav Item - User Information -->
           
         <li class="nav-item dropdown no-arrow">

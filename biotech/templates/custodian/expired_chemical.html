@@ -1,0 +1,315 @@
+{% extends 'main.html'%}
+
+{% block content %}
+
+
+{% if page == 'animal' %}
+<div class="container-fluid">
+    <div class="text-center">
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h2> Animal Bio-Technology <strong class="text-danger"> Expired </strong> Chemicals</h2> 
+            <!-- <a href="#" class="  btn btn-sm btn-info shadow-sm"><i
+                    class="fas fa-download fa-sm text-white-50"></i> Download Report</a> -->
+
+                   
+        </div>
+      </div>
+  <!-- Page Heading -->
+
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-info">Chemical Lists</h6>
+    </div>
+    <div class="card-body" style="box-shadow:0 0 25px 0 rgb(29, 175, 185);">
+        <div class="table-responsive">
+            <table class="table table-bordered text-gray-800" id="dataTable" width="100%" cellspacing="0" >
+                <thead>
+                 <tr>
+                <th>NO</th>
+                <th>Chemical Name</th>
+                <th>Company</th>
+                <th>Quantity</th>
+                <th>Unit</th>
+                <th>Shelf</th>
+                <th>Cabinate</th>
+                <th>Expire Date </th>
+                {% if request.user.groups.all.0.name == 'Department' %}
+                <th>Action</th>
+                {%endif%}
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>NO</th>
+                <th>Chemical Name</th>
+                <th>Company</th>
+                <th>Quantity</th>
+                <th>Unit</th>
+                <th>Shelf</th>
+                <th>Cabinate</th>
+                <th>Expire Date</th>
+                {% if request.user.groups.all.0.name == 'Department' %}
+                <th>Action</th>
+                {%endif%}
+            </tr>
+        </tfoot>
+        <tbody>
+         {% for chemicals in obj %}
+          
+            <tr align="center">
+                <td>{{forloop.counter }}</td>
+                <td>{{chemicals.chemical.name}}</td>
+                <td>{{chemicals.chemical.company}}</td>
+                 <td>{{chemicals.available}}</td>
+                  <td>{{chemicals.chemical.unit}}</td>
+                  <td>{{chemicals.shelf}}</td>
+                  <td>{{chemicals.cabinate}}</td> 
+                  <td>
+                     
+                 <i class="fas fa-success fa-1x text-danger"> <strike> {{chemicals.expireDate}}</strike></i> 
+               
+                </td>
+                {% if request.user.groups.all.0.name == 'Department' %}
+                <td>
+                    <a  href="{% url 'aExpiredDeatil' chemicals.id %}" >
+                    <i class="fas fa-pen fa-1x text-info"></i> 
+                </td>
+                {%endif%}
+                </tr>
+                {%empty%}    
+                <tr>
+                    <td colspan='5'>There are no chemicals</td>
+                </tr>   
+               
+            
+            {%endfor%}
+        
+          
+        </tbody>
+      </table>
+      {% if request.user.groups.all.0.name == 'Department' %}
+    <center>
+      <!-- <a class="btn btn-danger ml-3" href="#" data-toggle="modal" data-target="#adespose" >Despose All</a> -->
+    </center>
+    {%endif%}
+    </div>
+    </div>
+    </div>
+    </div>
+ {%elif page == 'plant'%}
+ <div class="container-fluid">
+    <div class="text-center">
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h2> Plant Bio-Technology <strong class="text-danger"> Expired </strong>Chemicals </h2>
+        
+        
+    </div>
+      </div>
+  <!-- Page Heading -->
+
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-info">chemicals</h6>
+    </div>
+    <div class="card-body" style="box-shadow:0 0 25px 0 rgb(29, 175, 185);">
+        <div class="table-responsive">
+            <table class="table table-bordered text-gray-800" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                 <tr>
+                <th>NO</th>
+                <th>Chemical Name</th>
+                <th>Company</th>
+                <th>Quantity</th>
+                <th>Unit</th>
+                <th>Shelf</th>
+                <th>Cabinate</th>
+                <th>Expire DAte </th>
+                {% if request.user.groups.all.0.name == 'Department' %}
+                <th>Action</th>
+                {%endif%}
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>NO</th>
+                <th>Chemical Name</th>
+                <th>Company</th>
+                <th>Quantity</th>
+                <th>Unit</th>
+                <th>Shelf</th>
+                <th>Cabinate</th>
+                <th>Expire DAte</th>
+                {% if request.user.groups.all.0.name == 'Department' %}
+                <th>Action</th>
+                {%endif%}
+            </tr>
+        </tfoot>
+        <tbody>
+         {% for chemicals in obj%}
+          
+            <tr align="center">
+                <td>{{forloop.counter }}</td>
+                <td>{{chemicals.chemical.name}}</td>
+                <td>{{chemicals.chemical.company}}</td>
+                 <td>{{chemicals.available}}</td>
+                  <td>{{chemicals.chemical.unit}}</td>
+                  <td>{{chemicals.shelf}}</td>
+                  <td>{{chemicals.cabinate}}</td> 
+                  <td>  <i class="fas fa-success fa-1x text-danger"> <strike> {{chemicals.expireDate}}</strike></i> </td>
+                {% if request.user.groups.all.0.name == 'Department' %}
+                <td>
+                    <a  href="{% url 'pExpiredDeatil' chemicals.id %}" >
+                    <i class="fas fa-pen fa-1x text-info"></i> 
+                </td>
+                {%endif%}
+                </tr>
+                {%empty%}    
+                <tr>
+                    <td colspan='5'>There are no chemicals</td>
+                </tr>   
+               
+            
+            {%endfor%}
+        
+          
+        </tbody>
+      </table>
+      {% if request.user.groups.all.0.name == 'Department' %}
+    <center>
+      <!-- <a class="btn btn-danger ml-3" href="#" data-toggle="modal" data-target="#pdespose" >Despose All</a> -->
+    </center>
+    {%endif%}
+    </div>
+    </div>
+    </div>
+    </div>
+{%elif page == 'microbial'%}
+<div class="container-fluid">
+    <div class="text-center">
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h2>  Microbial Bio-Technology <strong class="text-danger"> Expired </strong> Chemicals </h2>
+        
+        
+</div>
+      </div>
+  <!-- Page Heading -->
+
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-info">chemicals</h6>
+    </div>
+    <div class="card-body" style="box-shadow:0 0 25px 0 rgb(29, 175, 185);">
+        <div class="table-responsive">
+            <table class="table table-bordered text-gray-800" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                 <tr>
+                <th>NO</th>
+                <th>Chemical Name</th>
+                <th>Company</th>
+                <th>Quantity</th>
+                <th>Unit</th>
+                <th>Shelf</th>
+                <th>Cabinate</th>
+                <th>Expire DAte </th>
+                {% if request.user.groups.all.0.name == 'Department' %}
+                <th>Action</th>
+                {%endif%}
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>NO</th>
+                <th>Chemical Name</th>
+                <th>Company</th>
+                <th>Quantity</th>
+                <th>Unit</th>
+                <th>Shelf</th>
+                <th>Cabinate</th>
+                <th>Expire DAte</th>
+                {% if request.user.groups.all.0.name == 'Department' %}
+                <th>Action</th>
+                {%endif%}
+            </tr>
+        </tfoot>
+        <tbody>
+         {% for chemicals in obj%}
+          
+            <tr align="center">
+                <td>{{forloop.counter }}</td>
+                <td>{{chemicals.chemical.name}}</td>
+                <td>{{chemicals.chemical.company}}</td>
+                 <td>{{chemicals.available}}</td>
+                  <td>{{chemicals.chemical.unit}}</td>
+                  <td>{{chemicals.shelf}}</td>
+                  <td>{{chemicals.cabinate}}</td> 
+                  <td>  <i class="fas fa-success fa-1x text-danger"> <strike> {{chemicals.expireDate}}</strike></i> </td>
+                {% if request.user.groups.all.0.name == 'Department' %}
+                <td>
+                    <a  href="{% url 'mExpiredDeatil' chemicals.id %}" >
+                    <i class="fas fa-pen fa-1x text-info"></i> 
+                </td>
+                {%endif%}
+                </tr>
+                {%empty%}    
+                <tr>
+                    <td colspan='5'>There are no chemicals</td>
+                </tr>   
+               
+            
+            {%endfor%}
+        
+          
+        </tbody>
+      </table>
+      {% if request.user.groups.all.0.name == 'Department' %}
+    <center>
+      <!-- <a class="btn btn-danger ml-3" href="#" data-toggle="modal" data-target="#mdespose" >Despose All</a> -->
+    </center>
+    {%endif%}
+    </div>
+    </div>
+    </div>
+    </div>
+{%endif%}
+  <!-- adispose modal  -->
+  <!-- <div class="modal fade bd-example-modal-lg" id="adespose" tabindex="-1" role="dialog" aria-labelledby="detail"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      
+      <div class="modal-content" style="box-shadow:0 0 25px 0 rgba(216, 37, 67, 0.692);">
+          <div class="modal-header border-bottom-0">
+             
+              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+              </button>
+             </div>
+             <div class="modal-body border-bottom-0">
+             
+                    <div class="col-md-10 mx-auto">
+                              
+                                 <div class="card-header"> 
+                                      <h4 class="text-gray-800"><i class="fas fa-exclamation-triangle fa-2x text-danger"></i> Are you sure you want to Despose All "<strong class="text-gray-900"> Expired </strong>" Chemicals ?</h4>
+                                     
+                                 </div>
+                                 <div class="card-body">
+                                   
+                                   <h5 class="title" >  <a href="#" class="btn btn-danger"><i class="fas fa-check-circle fa-1x text-white"></i> Yes Despose</a> &nbsp;&nbsp;&nbsp;
+                                      
+                                       <button class="close btn btn-success" type="button" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">Cancel</span>
+                                      </button> 
+                                  </h5>
+                                
+                               
+                           </div>            
+               
+            </div>
+
+      </div>
+  </div>
+ </div>
+ </div> -->
+{% endblock%}

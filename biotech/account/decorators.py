@@ -10,7 +10,7 @@ def unauthenticated_user(view_func):
         elif request.user.groups.filter(name='Department').exists():
                 return redirect('departmenthome')        
         elif request.user.groups.filter(name='Director').exists():
-                return redirect('directorhome') 
+                return redirect('directorhome')  
         else:
             return view_func(request, *args, **kwargs)
 

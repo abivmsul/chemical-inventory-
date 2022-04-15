@@ -90,7 +90,7 @@
                                                                             <input type="number" readonly name="quantity" class="form-control form-control-sm"  value="{{che.issuedquantity}}" required/>
                                                                         </div>
                                                                         {%else%}
-                                                                {% if obj.department == "Animal Biotechnology" %}
+                                                                <!-- {% if obj.department == "Animal Biotechnology" %} -->
                                                                         
                                                                     <label for="net_total" class="col-sm-4 col-form-label" align="right">Expire Date</label>
                                                                         <div class="col-sm-6"> 
@@ -104,12 +104,16 @@
                                                                      <div class="col-sm-6">
                                                                      <input type="text"  name="cabinate" class="form-control form-control-sm"  value="{{store.cabinate}}" required/>
                                                                      </div>
+                                                                     <label for="net_total" class="col-sm-4 col-form-label" align="right">Fridge</label>
+                                                                     <div class="col-sm-6">
+                                                                        {{temp.temprature}}
+                                                                     </div>
                                                                      <label for="net_total" class="col-sm-4 col-form-label" align="right">Conifrmed Quantity</label>
                                                                      <div class="col-sm-6">
                                                                      <input type="number"  name="quantity" class="form-control form-control-sm"  value="" required/>
                                                                      </div>
                                                            
-                                                                    {% elif obj.department == "Plant Biotechnology" %}
+                                                                    <!-- {% elif obj.department == "Plant Biotechnology" %}
                                                                     <div>
                                                                         <label for="net_total" class="col-sm-1 col-form-label" align="right">Shelf</label>
                                                                         <div class="col-sm-1">
@@ -139,7 +143,7 @@
                                                                         <input type="number"  name="quantity" class="form-control form-control-sm"  value="" required/>
                                                                         </div>
                                                                         </div>
-                                                                    {%endif%}
+                                                                    {%endif%} -->
                                              <input type="hidden" name="next" value="{{ request.path }}">
                                              <div class="input-group-append">
                                                  <input type="submit" name="add" class="btn btn-info"  value="Confirm">
@@ -270,6 +274,10 @@
                                                                      <label for="net_total" class="col-sm-4 col-form-label" align="right">Cabinate</label>
                                                                      <div class="col-sm-6">
                                                                      <input type="text"  name="cabinate" class="form-control form-control-sm"  value="{{store.cabinate}}" required/>
+                                                                     </div>
+                                                                     <label for="net_total" class="col-sm-4 col-form-label" align="right">Fridge</label>
+                                                                     <div class="col-sm-6">
+                                                                        {{temp.temprature}}
                                                                      </div>
                                                                      <label for="net_total" class="col-sm-4 col-form-label" align="right">Conifrmed Quantity</label>
                                                                      <div class="col-sm-6">
@@ -407,6 +415,10 @@
                                                                      <label for="net_total" class="col-sm-4 col-form-label" align="right">Cabinate</label>
                                                                      <div class="col-sm-6">
                                                                      <input type="text"  name="cabinate" class="form-control form-control-sm"  value="{{store.cabinate}}" required/>
+                                                                     </div>
+                                                                     <label for="net_total" class="col-sm-4 col-form-label" align="right">Fridge</label>
+                                                                     <div class="col-sm-6">
+                                                                        {{temp.temprature}}
                                                                      </div>
                                                                      <label for="net_total" class="col-sm-4 col-form-label" align="right">Conifrmed Quantity</label>
                                                                      <div class="col-sm-6">

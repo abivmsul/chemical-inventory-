@@ -1,0 +1,98 @@
+{% extends 'main.html'%}
+{% load static %}
+
+{%block content%}
+         <!-- Begin Page Content -->
+         <div class="container-fluid">
+            {% include 'partials/_alerts.html' %}
+            <!-- Page Heading -->
+            <h1 class="h3 mb-2 text-gray-800">Despose Chemical Detail</h1>
+           
+            <!-- DataTales Example -->
+            <div class="card shadow mb-4">
+                
+                <div class="card-body" style="box-shadow:0 0 25px 0 rgb(29, 175, 185);" >
+                    <div class="col-auto" >
+                        {% if che %}
+                                    <div class="p-2">
+                                                <br>
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label" align="right">Name</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" id="order_date" name="order_date" readonly class="form-control form-control-sm" value="{{che.chemical.name}}">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label" align="right">Company</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" id="cust_name" name="pnumber"  readonly class="form-control form-control-sm" placeholder="{{che.chemical.company}}"/>
+                                                </div>
+                                            </div>
+                                        
+                                        <div class="form-group row">
+                                        <label for="net_total" class="col-sm-3 col-form-label" align="right">Quantity </label>
+                                        <div class="col-sm-6">
+                                            <input type="text" readonly name="tinnumber" class="form-control form-control-sm" id="net_total" value="{{che.available}}"/>
+                                        </div>
+                                        </div> 
+                                    
+                                        <hr>
+                                        <center>
+                                           
+                                            <a href="#"  data-toggle="modal" data-target="#despose" class="btn btn-success"><i class="fas fa-trash fa-1x text-white"></i> Confirm Request </a>
+                                          
+                                            </center>
+                                        {%endif%}
+                                    </div>
+                        
+                                </div>
+                        
+                </div>
+            </div>
+
+        </div>
+       
+
+      <!-- disable modal  -->
+  <div class="modal fade bd-example-modal-lg" id="despose" tabindex="-1" role="dialog" aria-labelledby="detail"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      
+      <div class="modal-content" style="box-shadow:0 0 25px 0 rgba(216, 37, 67, 0.692);">
+          <div class="modal-header border-bottom-0">
+             
+              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+              </button>
+             </div>
+             <div class="modal-body border-bottom-0">
+             
+                    <div class="col-md-10 mx-auto">
+                              
+                                 <div class="card-header"> 
+                                      <h4 class="text-gray-800"><i class="fas fa-exclamation-triangle fa-2x text-danger"></i> Confirm That You Have Successfully Desposed  "<strong class="text-gray-900"> {{che.chemical.name}} </strong>" Chemical?</h4>
+                                     
+                                 </div>
+                                 <div class="card-body">
+                                   
+                                   <h5 class="title" >
+                                          
+                                          <a href="{% url 'adespose' che.id %}?next={{ request.path|urlencode }}" class="btn btn-success"><i class="fas fa-check-circle fa-1x text-white"></i> Yes Confirm</a> &nbsp;&nbsp;&nbsp;
+                                     
+                                       <button class="close btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">Cancel</span>
+                                      </button> 
+                                  </h5>
+                                
+                               
+                           </div>            
+               
+            </div>
+
+      </div>
+  </div>
+ </div>
+</div>
+
+
+{% endblock %}

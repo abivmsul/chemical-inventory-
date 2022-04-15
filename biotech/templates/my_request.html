@@ -31,6 +31,9 @@
                 <th>Issued Quantity</th>
                 <th>Unit</th>
                 <th>Status</th>
+                {% if request.user.groups.all.0.name == 'Researcher' %}
+                <th>Pin</th>
+                {%endif%}
                 <th>Action </th>
             </tr>
         </thead>
@@ -45,21 +48,24 @@
                 <th>Issued Quantity</th>
                 <th>Unit</th>
                 <th>Status</th>
+                {% if request.user.groups.all.0.name == 'Researcher' %}
+                <th>Pin</th>
+                {%endif%}
                 <th>Action</th>
             </tr>
         </tfoot>
         <tbody>
          {% for requests in obj%}
           
-            <tr align="center">
-                <td>{{forloop.counter }}</td>
+            <tr >
+                <td align="center">{{forloop.counter }}</td>
                 <td>{{requests.ordered_date}}</td>
                 <td>{{requests.department}}</td>
                 <td>{{requests.user.username}}</td>
                 <td>
                     <table class="table table-bordered text-gray-800">
                 {% for requestedchemical in requests.chemicals.all %} 
-                    <tr align="center">
+                    <tr >
                 <td>{{requestedchemical.chemical.name}} &nbsp; 
                     {%if requestedchemical.recieved == True%}
                     <i class="fas fa-check-circle fa-1x text-success"></i>
@@ -84,7 +90,17 @@
                     <table  class="table table-bordered text-gray-800">
                         {% for requestedchemical in requests.chemicals.all %} 
                     <tr align="center">
-                        <td>{{requestedchemical.issuedquantity}} </td>
+                        <td>
+                            {%if requestedchemical.quantity == requestedchemical.issuedquantity %}
+                            <i class="fas fa-success fa-1x text-success">{{requestedchemical.issuedquantity}}</i> - <i class="fas fa-check-circle fa-1x text-success"></i>
+                            {%elif requestedchemical.quantity > requestedchemical.issuedquantity %}
+                                {% if requestedchemical.issuedquantity == 0 %}
+                                {{requestedchemical.issuedquantity}}
+                                {%else%}
+                                <i class="fas fa-success fa-1x text-danger">{{requestedchemical.issuedquantity}}</i> 
+                                {%endif%}
+                            {%endif%}
+                            </td>
                     </tr>    
                          {% endfor %}
                     </table>
@@ -111,14 +127,17 @@
                     {%endif%}
                    
                 </td>
-                <td>
+                {% if request.user.groups.all.0.name == 'Researcher' %}
+                <td>{{requests.pin}}</td>
+                {%endif%}
+                
+                <td align="center">
                     
-                <a  href="#" >
-                    <i class="fas fa-print fa-2x text-info"></i>
-                </a>
+               
                     &nbsp;
-                    {% if requests.received == False %}
-
+                    {% if requests.received %}
+                    -
+                    {% elif requests.received == False %}
                     <a href="{% url 'removeRequest' requests.id %}" >
                    <i class="fas fa-trash fa-1x text-danger"></i>
                </a>

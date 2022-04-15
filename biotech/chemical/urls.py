@@ -3,7 +3,7 @@ from . import views
 from .views import (requestSummary, requestConfirm, myRequest)
 
 urlpatterns = [
-      
+       
     path('researcher',views.researcherHomeView, name= "researcherhome"),
     path('custodian/',views.custodianHomeView, name= "custodianhome"),
     path('deparment/',views.departmentHomeView, name= "departmenthome"),
@@ -13,6 +13,37 @@ path('chemicalList/',views.chemicalList, name= "chemicalList"),
 path('animalchemicalList/',views.animalchemicalList, name= "animalchemicalList"),
 path('plantchemicalList/',views.plantchemicalList, name= "plantchemicalList"),
 path('microbialchemicalList/',views.microbialchemicalList, name= "microbialchemicalList"),
+
+    path('aExpired/',views.aExpired, name= "aExpired"),
+    path('pExpired/',views.pExpired, name= "pExpired"),
+    path('mExpired/',views.mExpired, name= "mExpired"),
+
+path('aExpiredDeatil/<int:pk>/', views.aExpiredDeatil, name='aExpiredDeatil'),
+path('pExpiredDeatil/<int:pk>/', views.pExpiredDeatil, name='pExpiredDeatil'),
+path('m ExpiredDeatil/<int:pk>/', views.mExpiredDeatil, name='mExpiredDeatil'),
+
+    path('adespose/<int:pk>/', views.adespose, name='adespose'),
+    path('pdespose/<int:pk>/', views.pdespose, name='pdespose'),
+    path('mdespose/<int:pk>/', views.mdespose, name='mdespose'),
+
+path('aRequestDesposedChemical/',views.aRequestDesposedChemical, name= "aRequestDesposedChemical"),
+path('pRequestDesposedChemical/',views.pRequestDesposedChemical, name= "pRequestDesposedChemical"),
+path('mRequestDesposedChemical/',views.mRequestDesposedChemical, name= "mRequestDesposedChemical"),
+
+#despose request for custodian
+    path('aDesposeRequest/',views.aDesposeRequest, name= "aDesposeRequest"),
+    path('pDesposeRequest/',views.pDesposeRequest, name= "pDesposeRequest"),
+    path('mDesposeRequest/',views.mDesposeRequest, name= "mDesposeRequest"),
+   
+#despose condirm for custodian
+path('aDesposeConfirm/<int:pk>/',views.aDesposeConfirm, name= "aDesposeConfirm"),
+path('pDesposeConfirm/<int:pk>/',views.pDesposeConfirm, name= "pDesposeConfirm"),
+path('mDesposeConfirm/<int:pk>/',views.mDesposeConfirm, name= "mDesposeConfirm"),
+
+
+     path('aDesposedChemical/',views.aDesposedChemical, name= "aDesposedChemical"),
+     path('pDesposedChemical/',views.pDesposedChemical, name= "pDesposedChemical"),
+     path('mDesposedChemical/',views.mDesposedChemical, name= "mDesposedChemical"),
 
 path('animalrequests/',views.animalRequests, name= "animalrequests"),
 path('micobialrequests/',views.microbialRequests, name= "microbialrequests"),
@@ -62,6 +93,8 @@ path('plantchemicals/',views.plantChemicals, name= "plantchemicals"),
     
 
 # report 
-
 path('csvChemicalReport/<str:dept>/', views.csvChemicalReport, name='csvChemicalReport'),
+path('csvEChemicalReport/<str:dept>/', views.csvEChemicalReport, name='csvEChemicalReport'),
+path('csvDChemicalReport/<str:dept>/', views.csvDChemicalReport, name='csvDChemicalReport'),
+
 ]
